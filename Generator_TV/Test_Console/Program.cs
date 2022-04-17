@@ -179,23 +179,40 @@ namespace Test_Console
             {
                 text = " В библиотеке университета путей сообщения есть две книги по теории вероятностей: В.Е.Гмурмана и " +
                     "А.А.Боровкова. Вероятность того, что в течение семестра будет затребована книга первого автора," +
-                    " равна 0,7, второго — 0,9.Какова вероятность того, что к концу семестра: " +
+                    " равна ";
+                float count1 = rand.Next(4, 10)/10f;
+                text += (count1).ToString();
+
+                text += ", второго — ";
+                float count2 = rand.Next(4, 10) / 10f;
+                text += (count2).ToString();
+
+                text += ". Какова вероятность того, что к концу семестра: " +
                     "\nа) ни одна, ни другая книга не будут затребованы;" +
                     "\nб) хотя бы одна из книг будет выдана;" +
                     "\nв) будет выдана только книга А. А.Боровкова?";
-
-                rezult += "0,03\n0,34\n0,27";
+                
+                rezult += string.Format("{0:0.00}", ((1-count1)*(1-count2)))+"\n"+ string.Format("{0:0.00}", 1 - (1 - count1) * (1 - count2)) +
+                    "\n" + string.Format("{0:0.00}", (1 - count1) * (count2));
                 return (text, rezult);
             }
             else
             {
-                text = "Два рыбака ловят рыбу на озере. Вероятность поймать на удочку карася для первого равна 0,7," +
-                    " для второго — 0,6. Какова вероятность того, что:" +
+                text = "Два рыбака ловят рыбу на озере. Вероятность поймать на удочку карася для первого равна ";
+                float count1 = rand.Next(4, 10) / 10f;
+                text += (count1).ToString();
+
+                text += " для второго — ";
+                float count2 = rand.Next(4, 10) / 10f;
+                text += (count2).ToString();
+
+                text += ". Какова вероятность того, что:" +
                     "\nа) они поймают хотя бы одного карася;" +
                     "\nб) вообще не поймают карасей;" +
                     "\nв) поймает карася только первый рыбак?";
 
-                rezult += "0,46\n0,12\n0,28";
+                rezult += string.Format("{0:0.00}", 1 - (1 - count1) * (1 - count2)) +
+                    "\n" + string.Format("{0:0.00}", (1 - count1) * (1 - count2)) + "\n" + string.Format("{0:0.00}", (count1) * (1-count2));
 
                 return (text, rezult);
             }
@@ -287,7 +304,7 @@ namespace Test_Console
         {
             Generator_TV test = new Generator_TV();
             string s1, s2;
-            (s1,s2) = test.task3(0);
+            (s1,s2) = test.task4(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
