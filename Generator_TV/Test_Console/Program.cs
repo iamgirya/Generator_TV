@@ -145,9 +145,9 @@ namespace Test_Console
                 text = "Эксперимент состоит в двух выстрелах по мишени. Событие А — попадание в мишень первым выстрелом; " +
                     "событие В — попадание в мишень вторым выстрелом. Постройте множество элементарных исходов и выявите" +
                     " состав подмножеств, соответствующих событиям:" +
-                    "а) А U В;" +
-                    "б) А ∩ В;" +
-                    "в) ¬А U ¬В.";
+                    "\nа) А U В;" +
+                    "\nб) А ∩ В;" +
+                    "\nв) ¬А U ¬В.";
                 
                 rezult += "Ω = {q00, q01, q10, q11}\n" +
                     "А U В = { q10, q01, q11}\nА ∩ В ={q11}\n¬А U ¬В = {q00, q10, q01}\nГде q00 - промах двумя выстрелами, " +
@@ -161,86 +161,114 @@ namespace Test_Console
                     "строя k-го транзистора(k = 1, 2, 3), событие Сi — выход из строя i-го конденсатора(i = 1, 2, 3, 4)," +
                     " Rj — выход из строя j -го резистора(j = 1, 2, 3, 4, 5). Электронная схема считается исправной," +
                     " если одновременно исправны все транзисторы, не менее двух конденсаторов и хотя бы один резистор." +
-                    "Записать в алгебре событий событие А: схема исправна.";
+                    "\nЗаписать в алгебре событий событие А: схема исправна.";
 
                 rezult += "A = T1*T2*T3*(C1*C2+C1*C3+C1*C4+C2*C3+C2*C4+C3*C4)*(R1+R2+R3+R4+R5)";
 
                 return (text, rezult);
             }
         }
-        public (string,string) task4()
+        public (string,string) task4(int chooseVar)
+        {
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                text = " В библиотеке университета путей сообщения есть две книги по теории вероятностей: В.Е.Гмурмана и " +
+                    "А.А.Боровкова. Вероятность того, что в течение семестра будет затребована книга первого автора," +
+                    " равна 0,7, второго — 0,9.Какова вероятность того, что к концу семестра: " +
+                    "\nа) ни одна, ни другая книга не будут затребованы;" +
+                    "\nб) хотя бы одна из книг будет выдана;" +
+                    "\nв) будет выдана только книга А. А.Боровкова?";
+
+                rezult += "0,03\n0,34\n0,27";
+                return (text, rezult);
+            }
+            else
+            {
+                text = "Два рыбака ловят рыбу на озере. Вероятность поймать на удочку карася для первого равна 0,7," +
+                    " для второго — 0,6. Какова вероятность того, что:" +
+                    "\nа) они поймают хотя бы одного карася;" +
+                    "\nб) вообще не поймают карасей;" +
+                    "\nв) поймает карася только первый рыбак?";
+
+                rezult += "0,46\n0,12\n0,28";
+
+                return (text, rezult);
+            }
+        }
+        public (string,string) task5(int chooseVar)
         {
             return ("","");
         }
-        public (string,string) task5()
+        (string,string) task6(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task6()
+        (string,string) task7(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task7()
+        (string,string) task8(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task8()
+        (string,string) task9(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task9()
+        (string,string) task10(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task10()
+        (string,string) task11(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task11()
+        (string,string) task12(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task12()
+        (string,string) task13(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task13()
+        (string,string) task14(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task14()
+        (string,string) task15(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task15()
+        (string,string) task16(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task16()
+        (string,string) task17(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task17()
+        (string,string) task18(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task18()
+        (string,string) task19(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task19()
+        (string,string) task20(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task20()
+        (string,string) task21(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task21()
-        {
-            return ("","");
-        }
-        (string,string) task22()
+        (string,string) task22(int chooseVar)
         {
             return ("","");
         }
