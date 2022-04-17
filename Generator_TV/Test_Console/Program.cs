@@ -59,19 +59,89 @@ namespace Test_Console
                 return (text, rezult);
             }
         }
-        (string,string) task2()
+        public (string,string) task2(int chooseVar)
+        {
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                text = "Колода карт, значения карт которой только с 6 по 10, (20 листов) разбивается наугад на" +
+                " две равные стопки по 10 листов. Найти вероятность того, что:" +
+                "\nа) в первой стопке окажется ";
+                int count1 = rand.Next(1, 5);
+                text += (count1).ToString();
+                if (count1 >= 2)
+                    text += " десятки;";
+                else
+                    text += " десятка;";
+
+                text += "\nб) в первой стопе окажется хотя бы ";
+                int count2 = rand.Next(2, 4);
+                text += (count2).ToString();
+                if (count2 >= 2)
+                    text += " десятки.";
+                else
+                    text += " десятка.";
+
+                ulong ans1, ans2;
+                (ans1,ans2) = TeorVer.Baes(20, 10, 4, count1);
+                rezult = (ans1).ToString() +"/"+ (ans2).ToString() + "\n";
+
+                double ans3 = 0;
+                for (int i = 4; i >= count2; i--)
+                {
+                    (ans1, ans2) = TeorVer.Baes(20, 10, 4, i);
+                    ans3 += Convert.ToDouble(ans1) / Convert.ToDouble(ans2);
+                }
+                rezult += string.Format("{0:0.000000}", ans3);
+
+                return (text, rezult);
+            }
+            else
+            {
+                text = "В розыгрыше кубка по футболу участвуют 16 команд, среди которых ";
+                int count1 = rand.Next(5, 8);
+                text += (count1).ToString();
+
+                text += " команд первой лиги. Все команды " +
+                "по жребию делятся на две группы по 8 команд. Найти вероятность того, что:" +
+                "\nа) все команды первой лиги попадут в одну группу;";
+
+                text += "\nб) в одну группу попадут хотя бы ";
+                int count2 = rand.Next(count1-3, count1);
+                text += (count2).ToString();
+                if (count2 != 5)
+                    text += " команды первой лиги.";
+                else
+                    text += " команд первой лиги.";
+
+                ulong ans1, ans2;
+                (ans1, ans2) = TeorVer.Baes(16, 8, count1, count1);
+                rezult = (ans1).ToString() + "/" + (ans2).ToString() + "\n";
+
+                double ans3 = 0;
+                for (int i = count2; i <= count1; i++)
+                {
+                    (ans1, ans2) = TeorVer.Baes(16, 8, count1, i);
+                    ans3 += Convert.ToDouble(ans1) / Convert.ToDouble(ans2);
+                }
+                rezult += string.Format("{0:0.000000}", ans3);
+
+                return (text, rezult);
+            }
+        }
+        public (string,string) task3()
         {
             return ("","");
         }
-        (string,string) task3()
+        public (string,string) task4()
         {
             return ("","");
         }
-        (string,string) task4()
-        {
-            return ("","");
-        }
-        (string,string) task5()
+        public (string,string) task5()
         {
             return ("","");
         }
@@ -158,7 +228,7 @@ namespace Test_Console
         {
             Generator_TV test = new Generator_TV();
             string s1, s2;
-            (s1,s2) = test.task1(2);
+            (s1,s2) = test.task2(2);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
         }
