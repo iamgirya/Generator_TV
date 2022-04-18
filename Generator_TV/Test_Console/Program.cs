@@ -219,7 +219,45 @@ namespace Test_Console
         }
         public (string,string) task5(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+
+                text = "Два гроссмейстера играют две партии в шахматы. Вероятность выигрыша в одной партии для первого" +
+                    " шахматиста равна ";
+                float count1 = rand.Next(1, 5) / 10f;
+                text += (count1).ToString();     
+                text += ", для второго —";
+                float count2 = rand.Next(1, 5) / 10f;
+                text += (count2).ToString();
+                text += "; вероятность ничьей — ";
+                float count3 = 1 - count1 - count2;
+                text += (count3).ToString();
+                text += ". Какова вероятность того," +
+                    " что первый гроссмейстер выиграет матч ?";
+
+                rezult += string.Format("{0:0.00}", count1*(1-count2) + count3*count1);
+                return (text, rezult);
+            }
+            else
+            {
+                text = "Барон вызвал графа на дуэль. В пистолетах у дуэлянтов по два патрона. Вероятность попадания в " +
+                    "своего противника для барона(он и начинает дуэль) равна ";
+                float count1 = rand.Next(3, 8) / 10f;
+                text += (count1).ToString();
+                text += ", для графа — ";
+                float count2 = rand.Next(3, 8) / 10f;
+                text += (count2).ToString();
+                text += ". Найти вероятность того, что барон останется невредимым, если дуэль продолжается " +
+                    "либо до первого попадания в кого-либо из противников, либо до тех пор, пока не закончатся все патроны.";
+
+                rezult += string.Format("{0:0.00}", count1 + (1-count1)*(1-count2)*(count1+ (1 - count1) * (1 - count2)));
+                return (text, rezult);
+            }
         }
         (string,string) task6(int chooseVar)
         {
@@ -304,7 +342,7 @@ namespace Test_Console
         {
             Generator_TV test = new Generator_TV();
             string s1, s2;
-            (s1,s2) = test.task4(0);
+            (s1,s2) = test.task5(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
