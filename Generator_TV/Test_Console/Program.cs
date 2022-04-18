@@ -345,7 +345,93 @@ namespace Test_Console
         }
         public (string,string) task8(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                text = "Перед математической олимпиадой особой популярностью пользовались " +
+                    "книги Якова Исидоровича Перельмана: в библиотеке ";
+                float count1 = rand.Next(10, 20);
+                text += (count1).ToString();
+
+                text += " раз заказывали его книгу «Живая математика», ";
+                float count2 = rand.Next((int)(count1-5), (int)(count1));
+                text += (count2).ToString();
+
+                text += " раз — «Занимательные задачи», ";
+                float count3 = rand.Next((int)(count2 - 2), (int)(count2));
+                text += (count3).ToString();
+
+                text += " раз — «Загадки и диковинки в мире чисел». Подбор задач для олимпиады таков, что вероятность" +
+                    " решить задачу студенту, прочитавшему книгу «Живая математика», равна ";
+                float count4 = rand.Next(1,6) / 10f;
+                text += (count4).ToString();
+
+                text += ", «Занимательные задачи» — ";
+                float count5 = rand.Next(2,8) / 10f;
+                text += (count5).ToString();
+
+                text += ", «Загадки» — ";
+                float count6 = rand.Next(4,7) / 10f;
+                text += (count6).ToString();
+
+                text += ". Студент Филькин радостно сообщил, что решил задачу на олимпиаде. Какую книгу Перельмана" +
+                    " вероятнее всего он прочитал?";
+
+                float sum = count1 + count2 + count3;
+                if ((count1 / sum) * count4 > (count2 / sum) * count5)
+                    if ((count1 / sum) * count4 > (count3 / sum) * count6)
+                        rezult += "Живая математика";
+                    else
+                        rezult += "Загадки и диковинки в мире чисел";
+                else
+                    if ((count2 / sum) * count4 > (count3 / sum) * count6)
+                        rezult += "Занимательные задачи";
+                    else
+                        rezult += "Загадки и диковинки в мире чисел";
+
+                return (text, rezult);
+            }
+            else
+            {
+                text = "В зоопарке живут ";
+                float count1 = rand.Next(2,7);
+                text += (count1).ToString();
+
+                text += " кенгуру, ";
+                float count2 = rand.Next(5,10);
+                text += (count2).ToString();
+
+                text += " муравьедов и ";
+                float count3 = rand.Next(7, 12);
+                text += (count3).ToString();
+
+                text += " горилл. Условия содержания млекопитающих таковы, что вероятность заболеть у" +
+                    " этих животных соответственно равна ";
+                float count4 = rand.Next(1,8) / 10f;
+                text += (count4).ToString();
+
+                text += ", ";
+                float count5 = rand.Next(1,9) / 10f;
+                text += (count5).ToString();
+
+                text += " и ";
+                float count6 = rand.Next(4,8) / 10f;
+                text += (count6).ToString();
+
+                text += ". Животное, которое удалось поймать врачу, оказалось здоровым. Какова " +
+                    "вероятность того, что врач осматривал муравьеда?";
+
+                rezult += (((1-count5)*(count2/(count1+count2+count3)))/
+                    (((1 - count5) * (count2 / (count1 + count2 + count3)))+
+                    ((1 - count4) * (count1 / (count1 + count2 + count3))) +
+                    ((1 - count6) * (count3 / (count1 + count2 + count3))))).ToString();
+
+                return (text, rezult);
+            }
         }
         public (string,string) task9(int chooseVar)
         {
@@ -418,7 +504,7 @@ namespace Test_Console
         {
             Generator_TV test = new Generator_TV();
             string s1, s2;
-            (s1,s2) = test.task7(0);
+            (s1,s2) = test.task8(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
