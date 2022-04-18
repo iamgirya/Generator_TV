@@ -304,33 +304,42 @@ namespace Test_Console
             if (chooseVar == 1)
             {
                 text = "К кладу ведут три дороги. Вероятность погибнуть на первой дороге равна ";
-                float count1 = rand.Next(3, 9);
+                float count1 = rand.Next(3, 8) / 10f;
                 text += (count1).ToString();
-                ", на второй — 0,7, на третьей —
-0,8.Найти вероятность того, что ковбой доберется до кла&
-да по одной из них при условии, что дорога выбирается им
-наудачу.";
                 
-                text += " красных и ";
-                float count2 = rand.Next(3, 9);
+                text += ", на второй — ";
+                float count2 = rand.Next(2, 6) / 10f;
                 text += (count2).ToString();
-                text += " зеленых шаров. Проводится испытание по последовательному извлечению двух шаров " +
-                    "без возвращения. Найдите вероятность того, что второй шар будет зеленый, если известно, что первый шар был красный.";
 
-                rezult += count2.ToString() + "/" + (count2 + count1 - 1).ToString();
+                text += ", на третьей — ";
+                float count3 = rand.Next(1, 5) / 10f;
+                text += (count3).ToString();
+
+                text += ". Найти вероятность того, что ковбой доберется до клада по одной из них при условии," +
+                    " что дорога выбирается им наудачу.";
+
+                rezult += (count2+count1+ count3).ToString() + "/" + (3).ToString();
                 return (text, rezult);
             }
             else
             {
-                text = "В корзине ";
-                float count1 = rand.Next(15, 30);
+                text = "В диагностическом центре прием больных ведут три невропатолога: Фридман, Гудман и Шеерман," +
+                    " которые ставят правильный диагноз с вероятностью ";
+                float count1 = rand.Next(3, 8) / 10f;
                 text += (count1).ToString();
-                text += " шаров, среди которых ";
-                float count2 = rand.Next(5, 15);
-                text += (count2).ToString();
-                text += " оранжевых. Из нее поочередно извлекаются три шара. Найти вероятность того, что все вынутые шары оранжевые";
 
-                rezult += (count2 * (count2 - 1) * (count2 - 2)).ToString() + "/" + (count1 * (count1 - 1) * (count1 - 2)).ToString();
+                text += ", ";
+                float count2 = rand.Next(2, 6) / 10f;
+                text += (count2).ToString();
+
+                text += " и ";
+                float count3 = rand.Next(1, 5) / 10f;
+                text += (count3).ToString();
+
+                text += " соответственно. Какова вероятность того, что больному Сидорову будет поставлен" +
+                    " неверный диагноз, если он выбирает врача случайным образом.";
+
+                rezult += ((1-count2) + (1 - count1) + (1 - count3)).ToString() + "/" + (3).ToString();
                 return (text, rezult);
             }
         }
@@ -409,7 +418,7 @@ namespace Test_Console
         {
             Generator_TV test = new Generator_TV();
             string s1, s2;
-            (s1,s2) = test.task6(0);
+            (s1,s2) = test.task7(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
