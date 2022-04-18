@@ -231,16 +231,16 @@ namespace Test_Console
                     " шахматиста равна ";
                 float count1 = rand.Next(1, 5) / 10f;
                 text += (count1).ToString();     
-                text += ", для второго —";
+                text += ", для второго — ";
                 float count2 = rand.Next(1, 5) / 10f;
                 text += (count2).ToString();
                 text += "; вероятность ничьей — ";
                 float count3 = 1 - count1 - count2;
                 text += (count3).ToString();
                 text += ". Какова вероятность того," +
-                    " что первый гроссмейстер выиграет матч ?";
+                    " что первый гроссмейстер выиграет матч?";
 
-                rezult += string.Format("{0:0.00}", count1*(1-count2) + count3*count1);
+                rezult += (count1*(1-count2) + count3*count1).ToString();
                 return (text, rezult);
             }
             else
@@ -255,75 +255,142 @@ namespace Test_Console
                 text += ". Найти вероятность того, что барон останется невредимым, если дуэль продолжается " +
                     "либо до первого попадания в кого-либо из противников, либо до тех пор, пока не закончатся все патроны.";
 
-                rezult += string.Format("{0:0.00}", count1 + (1-count1)*(1-count2)*(count1+ (1 - count1) * (1 - count2)));
+                rezult += (count1 + (1-count1)*(1-count2)*(count1+ (1 - count1) * (1 - count2))).ToString();
                 return (text, rezult);
             }
         }
-        (string,string) task6(int chooseVar)
+        public  (string,string) task6(int chooseVar)
+        {
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                text = "В мешке ";
+                float count1 = rand.Next(3, 9) ;
+                text += (count1).ToString();
+                text += " красных и ";
+                float count2 = rand.Next(3, 9);
+                text += (count2).ToString();
+                text += " зеленых шаров. Проводится испытание по последовательному извлечению двух шаров " +
+                    "без возвращения. Найдите вероятность того, что второй шар будет зеленый, если известно, что первый шар был красный.";
+
+                rezult += count2.ToString() + "/" + (count2 + count1 - 1).ToString();
+                return (text, rezult);
+            }
+            else
+            {
+                text = "В корзине ";
+                float count1 = rand.Next(15, 30);
+                text += (count1).ToString();
+                text += " шаров, среди которых ";
+                float count2 = rand.Next(5, 15);
+                text += (count2).ToString();
+                text += " оранжевых. Из нее поочередно извлекаются три шара. Найти вероятность того, что все вынутые шары оранжевые";
+
+                rezult += (count2* (count2-1)*(count2-2)).ToString() + "/" + (count1 * (count1 - 1) * (count1 - 2)).ToString();
+                return (text, rezult);
+            }
+        }
+        public (string,string) task7(int chooseVar)
+        {
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                text = "К кладу ведут три дороги. Вероятность погибнуть на первой дороге равна ";
+                float count1 = rand.Next(3, 9);
+                text += (count1).ToString();
+                ", на второй — 0,7, на третьей —
+0,8.Найти вероятность того, что ковбой доберется до кла&
+да по одной из них при условии, что дорога выбирается им
+наудачу.";
+                
+                text += " красных и ";
+                float count2 = rand.Next(3, 9);
+                text += (count2).ToString();
+                text += " зеленых шаров. Проводится испытание по последовательному извлечению двух шаров " +
+                    "без возвращения. Найдите вероятность того, что второй шар будет зеленый, если известно, что первый шар был красный.";
+
+                rezult += count2.ToString() + "/" + (count2 + count1 - 1).ToString();
+                return (text, rezult);
+            }
+            else
+            {
+                text = "В корзине ";
+                float count1 = rand.Next(15, 30);
+                text += (count1).ToString();
+                text += " шаров, среди которых ";
+                float count2 = rand.Next(5, 15);
+                text += (count2).ToString();
+                text += " оранжевых. Из нее поочередно извлекаются три шара. Найти вероятность того, что все вынутые шары оранжевые";
+
+                rezult += (count2 * (count2 - 1) * (count2 - 2)).ToString() + "/" + (count1 * (count1 - 1) * (count1 - 2)).ToString();
+                return (text, rezult);
+            }
+        }
+        public (string,string) task8(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task7(int chooseVar)
+        public (string,string) task9(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task8(int chooseVar)
+        public (string,string) task10(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task9(int chooseVar)
+        public (string,string) task11(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task10(int chooseVar)
+        public (string,string) task12(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task11(int chooseVar)
+        public (string,string) task13(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task12(int chooseVar)
+        public (string,string) task14(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task13(int chooseVar)
+        public (string,string) task15(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task14(int chooseVar)
+        public (string,string) task16(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task15(int chooseVar)
+        public (string,string) task17(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task16(int chooseVar)
+        public (string,string) task18(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task17(int chooseVar)
+        public (string,string) task19(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task18(int chooseVar)
+        public (string,string) task20(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task19(int chooseVar)
+        public (string,string) task21(int chooseVar)
         {
             return ("","");
         }
-        (string,string) task20(int chooseVar)
-        {
-            return ("","");
-        }
-        (string,string) task21(int chooseVar)
-        {
-            return ("","");
-        }
-        (string,string) task22(int chooseVar)
+        public (string,string) task22(int chooseVar)
         {
             return ("","");
         }
@@ -342,7 +409,7 @@ namespace Test_Console
         {
             Generator_TV test = new Generator_TV();
             string s1, s2;
-            (s1,s2) = test.task5(0);
+            (s1,s2) = test.task6(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
