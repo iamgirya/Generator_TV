@@ -485,16 +485,52 @@ namespace Test_Console
         {
             return ("","");
         }
-        public (string,string) task22(int chooseVar)
+        (string, string) multiTask(int taskNumber, int chooseVar)
         {
-            return ("","");
+            switch (taskNumber)
+            {
+                case 1: return task1(chooseVar);
+                case 2: return task2(chooseVar);
+                case 3: return task3(chooseVar);
+                case 4: return task4(chooseVar);
+                case 5: return task5(chooseVar);
+                case 6: return task6(chooseVar);
+                case 7: return task7(chooseVar);
+                case 8: return task8(chooseVar);
+                case 9: return task9(chooseVar);
+                case 10: return task10(chooseVar);
+                case 11: return task11(chooseVar);
+                case 12: return task12(chooseVar);
+                case 13: return task13(chooseVar);
+                case 14: return task14(chooseVar);
+                case 15: return task15(chooseVar);
+                case 16: return task16(chooseVar);
+                case 17: return task17(chooseVar);
+                case 18: return task18(chooseVar);
+                case 19: return task19(chooseVar);
+                case 20: return task20(chooseVar);
+                case 21: return task21(chooseVar);
+                default: return ("","");
+            }
         }
 
-        void Generate(int numVar, int startTask, int endTask)
+        // основная функция, доступная извне. Вот её должна вызывать Ия в своём интерфейсе,
+        // а Дима должен её изменить таким образом, чтобы она ещё и делала запись в файл. Но основа выглядит так:
+        public void Generate(int numVar, int startTask, int endTask, List<string> fioList = null)
         {
+            // случай, если требуемое количество сгенерированных вариантов больше, чем количество имеющихся фио.
+            // можно вызывать Generate с пустым fio листом, тогда варианты не будут подписаны.
+            if (fioList != null && numVar > fioList.Count)
+                return;
+            // для каждого варианта
             for (int k = 0; k < numVar; k++)
-            {
-
+            {   
+                // генерим требуемые задачи по номеру.
+                for (int i = startTask; i <= endTask && i <22 && i > 0; i ++)
+                {
+                    // если второй аргумент 0 - то задача рандомно выбирается из 1 или 6 варианта. Если 1 - из 1-го, иначе из 6-го.
+                    multiTask(i, 0);
+                }
             }
         }
     }
@@ -503,8 +539,10 @@ namespace Test_Console
         static void Main(string[] args)
         {
             Generator_TV test = new Generator_TV();
+            test.Generate(10, 1, 8);
             string s1, s2;
-            (s1,s2) = test.task8(0);
+            // все функции задания публичны, но это временно сделано для лёгкого тестирования
+            (s1,s2) = test.task6(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
