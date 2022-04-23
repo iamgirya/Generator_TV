@@ -564,7 +564,91 @@ namespace Test_Console
         }
         public (string,string) task12(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                float count1 = rand.Next(4, 8);
+
+                text = string.Format("Имеется {0} ключей, из которых только один подходит к замку. Составить ряд" +
+                    " распределения числа подбора ключа к замку, если не подошедший ключ в последующих" +
+                    " опробованиях не участвует.Найти М(Х), D(X), σ(X),F(X) этой случайной величины." +
+                    "Построить график F(X).", count1);
+
+                List<double> vers = new List<double>();
+                vers.Add((1 / count1));
+                for (int i = 2; i <= count1; i++)
+                {
+                    double ver = 1;
+                    for (int j = 1; j < i; j++)
+                        ver *= (1 - 1 / (count1-j+1));
+                    ver *= (1 / (count1 - i + 1));
+                    vers.Add(ver);
+                }
+
+                double mx =0;
+                for (int i = 1; i <= count1; i++)
+                    mx += i * vers[i-1];
+                    
+                double dx = 0;
+                for (int i = 1; i <= count1; i++)
+                    dx += i*i * vers[i - 1];
+
+                rezult += "\n";
+                rezult += String.Format("P(x = {0}) = ", 1) + String.Format("{0:0.000}", vers[0]) + "\n";
+                for (int i = 2; i <= count1; i++)
+                {
+                    rezult += String.Format("P(x = {0}) = ", i) + String.Format("{0:0.000}", vers[i-1]) + "\n";
+                }
+
+                rezult += "\n" +
+                    "M(X) = " + String.Format("{0:0.0000}", mx) + "\n" +
+                    "D(X) = " + String.Format("{0:0.0000}", dx) + "\n" +
+                    "σ(X) = " + String.Format("{0:0.0000}", Math.Sqrt(dx)) + "\n" +
+                    "F(X) = \n";
+                rezult += "    | " + String.Format("{0:0.000}", vers[0]) + String.Format(", x = {0}\n", 1);
+                for (int i = 2; i <= count1; i++)
+                {
+                    double sumVer = 0;
+                    for (int j = 0; j < i; j++)
+                        sumVer += vers[j];
+                    rezult += "    | " + String.Format("{0:0.000}", sumVer) + String.Format(", x = {0}\n", i);
+                }
+                return (text, rezult);
+            }
+            else
+            {
+                int count1 = rand.Next(18, 31)*100;
+                int count2 = rand.Next(3, 9)*100;
+
+                text = string.Format("В лотерее на 1000 билетов разыгрываются три вещи, стоимость которых {0}, {1}, {2} руб. " +
+                    "Составить ряд распределения суммы выигрыша для лица, имеющего один билет. Найти " +
+                    "М(Х), D(X), σ(X), F(X) суммы выигрыша. Построить график F(X).", count1.ToString(), count2.ToString(), (count2/2).ToString());
+
+                double mx =0;
+                mx += count1 * (1 / 1000f) + count2 * (1 / 1000f) + count2 * (1 / 2000f);
+                double dx =0;
+                dx += count1 * count1 * (1 / 1000f) + count2 * count2 * (1 / 1000f) + count2 * count2 * (1 / 2000f);
+
+                rezult += "\n" +
+                        "P(x = 0) = " + String.Format("{0:0.000}", 997f/1000f) + "\n" +
+                        String.Format("P(x = {0}) = ", count1.ToString()) + String.Format("{0:0.000}", 1/1000f) + "\n" +
+                        String.Format("P(x = {0}) = ", count2.ToString()) + String.Format("{0:0.000}", 1/1000f) + "\n" +
+                        String.Format("P(x = {0}) = ", (count2/2).ToString()) + String.Format("{0:0.000}", 1/1000f);
+                rezult += "\n" +
+                    "M(X) = " + String.Format("{0:0.0000}", mx) + "\n" +
+                    "D(X) = " + String.Format("{0:0.0000}", dx) + "\n" +
+                    "σ(X) = " + String.Format("{0:0.0000}", Math.Sqrt(dx)) + "\n" +
+                    "F(X) = \n" +
+                    "    | " + String.Format("{0:0.000}", 997 / 1000f) + ", x = 0\n" +
+                    "    | " + String.Format("{0:0.000}", 998 / 1000f) + String.Format(", x = {0}\n", count2/2) +
+                    "    | " + String.Format("{0:0.000}", 999 / 1000f) + String.Format(", x = {0}\n", count2) +
+                    "    | " + String.Format("{0:0}", 1) + String.Format(", x = {0}\n", count1);
+                return (text, rezult);
+            }
         }
         public (string,string) task13(int chooseVar)
         {
@@ -659,7 +743,7 @@ namespace Test_Console
             test.Generate(10, 1, 8);
             string s1, s2;
             // все функции задания публичны, но это временно сделано для лёгкого тестирования
-            (s1,s2) = test.task11(0);
+            (s1,s2) = test.task12(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
