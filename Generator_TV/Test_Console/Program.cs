@@ -499,7 +499,7 @@ namespace Test_Console
 
                 double sqrt = Math.Sqrt(count2*(1-count1)*count1);
 
-                rezult += (1/sqrt).ToString() + "*ф("+((count2/2-count2*count1)/sqrt).ToString() +")\n" 
+                rezult += (1/sqrt).ToString() + " * ф("+((count2/2-count2*count1)/sqrt).ToString() +")\n" 
                     +"Ф("+ ((count2 / 2 - count2 * count1) / sqrt).ToString() + ") - Ф(" + ((- count2 * count1) / sqrt).ToString() + ")";
                 return (text, rezult);
             }
@@ -517,13 +517,50 @@ namespace Test_Console
                 double sqrt = Math.Sqrt(count2 * (1 - count1) * count1);
 
                 rezult += "Ф(" + (((count3 - 5) - count2 * count1) / sqrt).ToString() + ") - Ф(" + (((count3 - 20) - count2 * count1) / sqrt).ToString() + ")\n"
-                    + (1 / sqrt).ToString() + "*ф(" + ((count3 - count2 * count1) / sqrt).ToString() + ")";
+                    + (1 / sqrt).ToString() + " * ф(" + ((count3 - count2 * count1) / sqrt).ToString() + ")";
                 return (text, rezult);
             }
         }
         public (string,string) task11(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                float count1 = rand.Next(2, 7) / 1000f;
+                int count2 = rand.Next(2, 5);
+
+                text = string.Format("Аппаратура состоит из 1000 элементов, каждый из которых независимо от остальных" +
+                    " выходит из строя за время Т с вероятностью {0}. Найти вероятность того," +
+                    "что за время Т откажет не более {1} элементов", count1.ToString(), count2.ToString());
+
+                double a = 1000 * count1;
+                double ans = 0;
+                for (int i = 0; i <= count2; i++)
+                    ans += Math.Pow(a, i) * Math.Exp(-a) / Convert.ToDouble(TeorVer.Fact(i));
+                rezult += (ans).ToString();
+                return (text, rezult);
+            }
+            else
+            {
+                float count1 = rand.Next(2, 7);
+                int count2 = rand.Next(2, 5);
+
+                text = string.Format("Некачественные сверла составляют {0}% всей продукции фабрики. Изготовленные" +
+                    " сверла упаковываются в ящики по 100 штук. Какова вероятность того, что в ящике окажется" +
+                    " не более {1} некачественных сверл ? ", count1.ToString(), count2.ToString());
+                count1 /= 100;
+
+                double a = 100 * count1;
+                double ans = 0;
+                for (int i = 0; i <= count2; i++)
+                    ans += Math.Pow(a, i) * Math.Exp(-a) / Convert.ToDouble(TeorVer.Fact(i));
+                rezult += (ans).ToString();
+                return (text, rezult);
+            }
         }
         public (string,string) task12(int chooseVar)
         {
@@ -622,7 +659,7 @@ namespace Test_Console
             test.Generate(10, 1, 8);
             string s1, s2;
             // все функции задания публичны, но это временно сделано для лёгкого тестирования
-            (s1,s2) = test.task10(0);
+            (s1,s2) = test.task11(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();

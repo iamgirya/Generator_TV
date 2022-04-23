@@ -8,10 +8,19 @@ namespace Test_Console
 {
     class TeorVer
     {
-        static ulong Fact(ulong n)
+        public static ulong Fact(ulong n)
         {
             ulong f = 1, k = 1;
             while (k <=n)
+            {
+                f *= k; k++;
+            }
+            return f;
+        }
+        public static int Fact(int n)
+        {
+            int f = 1, k = 1;
+            while (k <= n)
             {
                 f *= k; k++;
             }
