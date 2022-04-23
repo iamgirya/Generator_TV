@@ -1,0 +1,7 @@
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.csproj.AssemblyReference.cache
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.csproj.CoreCompileInputs.cache
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Debug\Test_Console.exe.config
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Debug\Test_Console.exe
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Debug\Test_Console.pdb
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.exe
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.pdb
