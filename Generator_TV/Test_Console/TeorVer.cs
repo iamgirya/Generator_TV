@@ -41,5 +41,12 @@ namespace Test_Console
             return (C(Convert.ToUInt64(k), Convert.ToUInt64(s))*C(Convert.ToUInt64(m -k), 
                 Convert.ToUInt64(n -s)),C(Convert.ToUInt64(m), Convert.ToUInt64(n)));
         }
+
+        public static double Bernulli(int n, int k, float q)
+        {
+            if (k > n)
+                return 0;
+            return C(Convert.ToUInt64(k), Convert.ToUInt64(k)) * Math.Pow(q, k) * Math.Pow(1 - q, n - k);
+        }
     }
 }

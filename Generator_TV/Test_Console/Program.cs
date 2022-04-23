@@ -435,7 +435,50 @@ namespace Test_Console
         }
         public (string,string) task9(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                float count1 = rand.Next(10, 20) / 100f;
+                int count2 = rand.Next(5, 7);
+                int count3 = rand.Next(count2 - 2, count2);
+
+                text = string.Format("При передаче сообщения вероятность искажения одного знака равна {0}. Какова вероятность того," +
+                    " что сообщение из {1} знаков содержит:" +
+                    "\nа) {2} неправильных знака;" +
+                    "\nб) не менее {2} неправильных знаков ?", count1.ToString(), count2.ToString(), count3.ToString());
+
+                double ans = 0;
+                for (int i = count3; i <= count2; i++)
+                {
+                    ans += TeorVer.Bernulli(count2, i, count1);
+                }
+
+                rezult += (TeorVer.Bernulli(count2, count3, count1)).ToString() + "\n" + (ans).ToString();
+                return (text, rezult);
+            }
+            else
+            {
+                float count1 = rand.Next(10, 20) / 100f;
+                int count2 = rand.Next(5, 7);
+                int count3 = rand.Next(count2 - 2, count2);
+
+                text = string.Format("В поезде {1} электрических лампочек. Каждая из них перегорает" +
+                    " в течение года с вероятностью {0}. Найти вероятность того, что в течение года" +
+                    " перегорит не менее {2} лампочек", count1.ToString(), count2.ToString(), count3.ToString());
+
+                double ans = 0;
+                for (int i = count3; i <= count2; i++)
+                {
+                    ans += TeorVer.Bernulli(count2, i, count1);
+                }
+
+                rezult += (ans).ToString();
+                return (text, rezult);
+            }
         }
         public (string,string) task10(int chooseVar)
         {
@@ -542,7 +585,7 @@ namespace Test_Console
             test.Generate(10, 1, 8);
             string s1, s2;
             // все функции задания публичны, но это временно сделано для лёгкого тестирования
-            (s1,s2) = test.task6(0);
+            (s1,s2) = test.task9(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
