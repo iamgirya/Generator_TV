@@ -449,7 +449,7 @@ namespace Test_Console
                 text = string.Format("При передаче сообщения вероятность искажения одного знака равна {0}. Какова вероятность того," +
                     " что сообщение из {1} знаков содержит:" +
                     "\nа) {2} неправильных знака;" +
-                    "\nб) не менее {2} неправильных знаков ?", count1.ToString(), count2.ToString(), count3.ToString());
+                    "\nб) не менее {2} неправильных знаков?", count1.ToString(), count2.ToString(), count3.ToString());
 
                 double ans = 0;
                 for (int i = count3; i <= count2; i++)
@@ -468,7 +468,7 @@ namespace Test_Console
 
                 text = string.Format("В поезде {1} электрических лампочек. Каждая из них перегорает" +
                     " в течение года с вероятностью {0}. Найти вероятность того, что в течение года" +
-                    " перегорит не менее {2} лампочек", count1.ToString(), count2.ToString(), count3.ToString());
+                    " перегорит не менее {2} лампочек.", count1.ToString(), count2.ToString(), count3.ToString());
 
                 double ans = 0;
                 for (int i = count3; i <= count2; i++)
@@ -482,7 +482,44 @@ namespace Test_Console
         }
         public (string,string) task10(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                float count1 = rand.Next(40, 61) / 100f;
+                int count2 = rand.Next(6, 10)*10;
+                int count3 = rand.Next(count2 - 2, count2);
+
+                text = string.Format("Вероятность рождения мальчика равна {0}. Чему равна вероятность того," +
+                    " что среди {1} новорожденных:\nа) мальчиков ровно половина;" +
+                    "\nб) не менее половины мальчиков", count1.ToString(), count2.ToString());
+
+                double sqrt = Math.Sqrt(count2*(1-count1)*count1);
+
+                rezult += (1/sqrt).ToString() + "*ф("+((count2/2-count2*count1)/sqrt).ToString() +")\n" 
+                    +"Ф("+ ((count2 / 2 - count2 * count1) / sqrt).ToString() + ") - Ф(" + ((- count2 * count1) / sqrt).ToString() + ")";
+                return (text, rezult);
+            }
+            else
+            {
+                float count1 = rand.Next(4, 9) / 10f;
+                int count2 = rand.Next(8, 11) * 10;
+                int count3 = rand.Next(count2/10-3, count2/10)*10;
+
+                text = string.Format("Имеется {1} станков равной мощности, работающих независимо друг от друга в" +
+                    " одинаковом режиме при включенном приводе в течение {0} всего рабочего времени. Какова вероятность" +
+                    " того, что в произвольный момент окажутся включенными:\nа) от {3} до {4} станков;" +
+                    "\nб) ровно {2} станков ? ", count1.ToString(), count2.ToString(), count3.ToString(), (count3-20).ToString(), (count3 - 5).ToString());
+
+                double sqrt = Math.Sqrt(count2 * (1 - count1) * count1);
+
+                rezult += "Ф(" + (((count3 - 5) - count2 * count1) / sqrt).ToString() + ") - Ф(" + (((count3 - 20) - count2 * count1) / sqrt).ToString() + ")\n"
+                    + (1 / sqrt).ToString() + "*ф(" + ((count3 - count2 * count1) / sqrt).ToString() + ")";
+                return (text, rezult);
+            }
         }
         public (string,string) task11(int chooseVar)
         {
@@ -585,7 +622,7 @@ namespace Test_Console
             test.Generate(10, 1, 8);
             string s1, s2;
             // все функции задания публичны, но это временно сделано для лёгкого тестирования
-            (s1,s2) = test.task9(0);
+            (s1,s2) = test.task10(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
