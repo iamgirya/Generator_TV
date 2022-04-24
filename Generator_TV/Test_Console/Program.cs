@@ -726,7 +726,40 @@ namespace Test_Console
         }
         public (string,string) task14(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                int count1 = rand.Next(1, 5) * 500;
+                text = string.Format("Прядильщица обслуживает 1000 веретен. Вероятность обрыва нити на одном веретене в течение" +
+                    " одной минуты равна 0,03. Составить ряд распределения числа обрывов нити в течение одной минуты. " +
+                    "Найти M(X) этой случайной величины.", count1);
+
+                double a = count1 * 0.03;
+
+                rezult += String.Format("Pn(m) = (({0:0.0})^m) / (m!) * e^({0:0.0})\n", a);
+                rezult += String.Format("M(X) = {0:0.0}", a);
+
+                return (text, rezult);
+            }
+            else
+            {
+                int count1 = rand.Next(2, 5) *100;
+                text = string.Format("Вероятность для любого абонента позвонить на коммутатор в течение" +
+                    " одного часа равна 0,01. Телефонная станция обслуживает {0} абонентов. Составить ряд" +
+                    " распределения числа абонентов, которые могут позвонить на коммутатор в течение одного" +
+                    " часа. Найти M(X) этой случайной величины.", count1);
+
+                double a = count1 * 0.01;
+
+                rezult += String.Format("Pn(m) = (({0:0.0})^m) / (m!) * e^({0:0.0})\n", a);
+                rezult += String.Format("M(X) = {0:0.0}", a);
+
+                return (text, rezult);
+            }
         }
         public (string,string) task15(int chooseVar)
         {
@@ -813,7 +846,7 @@ namespace Test_Console
             test.Generate(10, 1, 8);
             string s1, s2;
             // все функции задания публичны, но это временно сделано для лёгкого тестирования
-            (s1,s2) = test.task13(0);
+            (s1,s2) = test.task14(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
