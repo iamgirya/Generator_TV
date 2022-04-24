@@ -598,10 +598,10 @@ namespace Test_Console
                     dx += i*i * vers[i - 1];
 
                 rezult += "\n";
-                rezult += String.Format("P(x = {0}) = ", 1) + String.Format("{0:0.000}", vers[0]) + "\n";
+                rezult += String.Format("P(x = {0}) = ", 1) + String.Format("{0:0.0000}", vers[0]) + "\n";
                 for (int i = 2; i <= count1; i++)
                 {
-                    rezult += String.Format("P(x = {0}) = ", i) + String.Format("{0:0.000}", vers[i-1]) + "\n";
+                    rezult += String.Format("P(x = {0}) = ", i) + String.Format("{0:0.0000}", vers[i-1]) + "\n";
                 }
 
                 rezult += "\n" +
@@ -609,13 +609,13 @@ namespace Test_Console
                     "D(X) = " + String.Format("{0:0.0000}", dx) + "\n" +
                     "σ(X) = " + String.Format("{0:0.0000}", Math.Sqrt(dx)) + "\n" +
                     "F(X) = \n";
-                rezult += "    | " + String.Format("{0:0.000}", vers[0]) + String.Format(", x = {0}\n", 1);
+                rezult += "    | " + String.Format("{0:0.0000}", vers[0]) + String.Format(", x = {0}\n", 1);
                 for (int i = 2; i <= count1; i++)
                 {
                     double sumVer = 0;
                     for (int j = 0; j < i; j++)
                         sumVer += vers[j];
-                    rezult += "    | " + String.Format("{0:0.000}", sumVer) + String.Format(", x = {0}\n", i);
+                    rezult += "    | " + String.Format("{0:0.0000}", sumVer) + String.Format(", x = {0}\n", i);
                 }
                 return (text, rezult);
             }
@@ -652,7 +652,77 @@ namespace Test_Console
         }
         public (string,string) task13(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                float count1 = rand.Next(1, 4)/10f;
+                int count2 = rand.Next(2, 5);
+                text = string.Format("Устройство состоит из {1} независимо работающих элементов. Вероятность отказа" +
+                    " каждого из них в одном опыте равна {0}. Составить ряд распределения числа отказавших элементов" +
+                    " в одном опыте. Найти M(X) и D(X) этой случайной величины.", count1, count2);
+
+                List<double> vers = new List<double>();
+                for (int i = 0; i <= count2; i++)
+                {
+                    vers.Add(TeorVer.Bernulli(count2, i, count1));
+                }
+                
+                double mx = 0;
+                for (int i = 1; i <= count2; i++)
+                    mx += i * vers[i];
+
+                double dx = 0;
+                for (int i = 1; i <= count2; i++)
+                    dx += i * i * vers[i];
+
+                rezult += "\n";
+                for (int i = 0; i <= count2; i++)
+                {
+                    rezult += String.Format("P(x = {0}) = ", i) + String.Format("{0:0.0000}", vers[i]) + "\n";
+                }
+
+                rezult += "\n" +
+                    "M(X) = " + String.Format("{0:0.0000}", mx) + "\n" +
+                    "D(X) = " + String.Format("{0:0.0000}", dx) + "\n";
+                return (text, rezult);
+            }
+            else
+            {
+                float count1 = rand.Next(6, 10) / 10f;
+                int count2 = rand.Next(4, 7);
+                text = string.Format("Вероятность приема сигнала равна {0}. Сигнал передается {1} раз." +
+                    " Составить ряд распределения числа передач, в которых сигнал будет принят. " +
+                    "Найти M(X) и D(X) этой случайной величины", count1, count2);
+
+                List<double> vers = new List<double>();
+                for (int i = 0; i <= count2; i++)
+                {
+                    vers.Add(TeorVer.Bernulli(count2, i, count1));
+                }
+
+                double mx = 0;
+                for (int i = 1; i <= count2; i++)
+                    mx += i * vers[i];
+
+                double dx = 0;
+                for (int i = 1; i <= count2; i++)
+                    dx += i * i * vers[i];
+
+                rezult += "\n";
+                for (int i = 0; i <= count2; i++)
+                {
+                    rezult += String.Format("P(x = {0}) = ", i) + String.Format("{0:0.0000}", vers[i]) + "\n";
+                }
+
+                rezult += "\n" +
+                    "M(X) = " + String.Format("{0:0.0000}", mx) + "\n" +
+                    "D(X) = " + String.Format("{0:0.0000}", dx) + "\n";
+                return (text, rezult);
+            }
         }
         public (string,string) task14(int chooseVar)
         {
@@ -743,7 +813,7 @@ namespace Test_Console
             test.Generate(10, 1, 8);
             string s1, s2;
             // все функции задания публичны, но это временно сделано для лёгкого тестирования
-            (s1,s2) = test.task12(0);
+            (s1,s2) = test.task13(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
