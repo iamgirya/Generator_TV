@@ -877,16 +877,44 @@ namespace Test_Console
                 rezult += String.Format(" {0} |", i.Value);
             }
 
-
-            //rezult += String.Format("M(X) = {0:0.0}", a);
             rezult += String.Format("\n\n3)M(Z1) = {0}, D(Z1) = {1}, M(Z2) = {2}, D(Z2) = {3}\n", mz1, dz1, mz2, dz2);
-
-
             return (text, rezult);
         }
         public (string,string) task16(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            //int count1 = rand.Next(2, 5) * 100;
+            text += "Дана функция распределения F(x) непрерывной случайной величины X. Требуется:" +
+                "\n1) найти плотность вероятности f(x);" +
+                "\n2) построить графики F(x) и f(x);" +
+                "\n3) найти Р(a < X < b) для данных a, b.\n";
+
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                float count1 = rand.Next(1, 3) /10f;
+                float count2 = rand.Next(4, 7) / 10f;
+                text += string.Format("F(x) = 0, x<=0; 3*x^2+2x, 0<x<=1/3; 1, x>1/3\na = {0} , b = {1}", count1,count2);
+
+                rezult += ("\nf(x) = 0, x<=0; 6*x+2, 0<x<=1/3; 0, x>1/3\n");
+                rezult += String.Format("P(a < X < b) = {0:0.0000}", 1-(3*count1*count1+2*count1));
+
+                return (text, rezult);
+            }
+            else
+            {
+                float count1 = rand.Next(1, 2);
+                float count2 = rand.Next(2, 4);
+                text += string.Format("F(x) = 0, x<=0; x^2/9, 0<x<=3; 1, x>3\na = {0} , b = {1}", count1, count2);
+
+                rezult += ("\nf(x) = 0, x<=0; 2*x/9, 0<x<=3; 0, x>3\n");
+                rezult += String.Format("P(a < X < b) = {0:0.0000}", count2*count2/9-count1*count1/9);
+
+                return (text, rezult);
+            }
         }
         public (string,string) task17(int chooseVar)
         {
@@ -965,7 +993,7 @@ namespace Test_Console
             test.Generate(10, 1, 8);
             string s1, s2;
             // все функции задания публичны, но это временно сделано для лёгкого тестирования
-            (s1,s2) = test.task15(0);
+            (s1,s2) = test.task16(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
