@@ -55,7 +55,7 @@ namespace Test_Console
         {
             if (k > n)
                 return 0;
-            return C(Convert.ToUInt64(k), Convert.ToUInt64(k)) * Math.Pow(q, k) * Math.Pow(1 - q, n - k);
+            return C(Convert.ToUInt64(k), Convert.ToUInt64(n)) * Math.Pow(q, k) * Math.Pow(1 - q, n - k);
         }
     }
 }

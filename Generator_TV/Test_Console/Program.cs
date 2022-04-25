@@ -598,10 +598,10 @@ namespace Test_Console
                     dx += i*i * vers[i - 1];
 
                 rezult += "\n";
-                rezult += String.Format("P(x = {0}) = ", 1) + String.Format("{0:0.000}", vers[0]) + "\n";
+                rezult += String.Format("P(x = {0}) = ", 1) + String.Format("{0:0.0000}", vers[0]) + "\n";
                 for (int i = 2; i <= count1; i++)
                 {
-                    rezult += String.Format("P(x = {0}) = ", i) + String.Format("{0:0.000}", vers[i-1]) + "\n";
+                    rezult += String.Format("P(x = {0}) = ", i) + String.Format("{0:0.0000}", vers[i-1]) + "\n";
                 }
 
                 rezult += "\n" +
@@ -609,13 +609,13 @@ namespace Test_Console
                     "D(X) = " + String.Format("{0:0.0000}", dx) + "\n" +
                     "σ(X) = " + String.Format("{0:0.0000}", Math.Sqrt(dx)) + "\n" +
                     "F(X) = \n";
-                rezult += "    | " + String.Format("{0:0.000}", vers[0]) + String.Format(", x = {0}\n", 1);
+                rezult += "    | " + String.Format("{0:0.0000}", vers[0]) + String.Format(", x = {0}\n", 1);
                 for (int i = 2; i <= count1; i++)
                 {
                     double sumVer = 0;
                     for (int j = 0; j < i; j++)
                         sumVer += vers[j];
-                    rezult += "    | " + String.Format("{0:0.000}", sumVer) + String.Format(", x = {0}\n", i);
+                    rezult += "    | " + String.Format("{0:0.0000}", sumVer) + String.Format(", x = {0}\n", i);
                 }
                 return (text, rezult);
             }
@@ -652,19 +652,269 @@ namespace Test_Console
         }
         public (string,string) task13(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                float count1 = rand.Next(1, 4)/10f;
+                int count2 = rand.Next(2, 5);
+                text = string.Format("Устройство состоит из {1} независимо работающих элементов. Вероятность отказа" +
+                    " каждого из них в одном опыте равна {0}. Составить ряд распределения числа отказавших элементов" +
+                    " в одном опыте. Найти M(X) и D(X) этой случайной величины.", count1, count2);
+
+                List<double> vers = new List<double>();
+                for (int i = 0; i <= count2; i++)
+                {
+                    vers.Add(TeorVer.Bernulli(count2, i, count1));
+                }
+                
+                double mx = 0;
+                for (int i = 1; i <= count2; i++)
+                    mx += i * vers[i];
+
+                double dx = 0;
+                for (int i = 1; i <= count2; i++)
+                    dx += i * i * vers[i];
+
+                rezult += "\n";
+                for (int i = 0; i <= count2; i++)
+                {
+                    rezult += String.Format("P(x = {0}) = ", i) + String.Format("{0:0.0000}", vers[i]) + "\n";
+                }
+
+                rezult += "\n" +
+                    "M(X) = " + String.Format("{0:0.0000}", mx) + "\n" +
+                    "D(X) = " + String.Format("{0:0.0000}", dx) + "\n";
+                return (text, rezult);
+            }
+            else
+            {
+                float count1 = rand.Next(6, 10) / 10f;
+                int count2 = rand.Next(4, 7);
+                text = string.Format("Вероятность приема сигнала равна {0}. Сигнал передается {1} раз." +
+                    " Составить ряд распределения числа передач, в которых сигнал будет принят. " +
+                    "Найти M(X) и D(X) этой случайной величины", count1, count2);
+
+                List<double> vers = new List<double>();
+                for (int i = 0; i <= count2; i++)
+                {
+                    vers.Add(TeorVer.Bernulli(count2, i, count1));
+                }
+
+                double mx = 0;
+                for (int i = 1; i <= count2; i++)
+                    mx += i * vers[i];
+
+                double dx = 0;
+                for (int i = 1; i <= count2; i++)
+                    dx += i * i * vers[i];
+
+                rezult += "\n";
+                for (int i = 0; i <= count2; i++)
+                {
+                    rezult += String.Format("P(x = {0}) = ", i) + String.Format("{0:0.0000}", vers[i]) + "\n";
+                }
+
+                rezult += "\n" +
+                    "M(X) = " + String.Format("{0:0.0000}", mx) + "\n" +
+                    "D(X) = " + String.Format("{0:0.0000}", dx) + "\n";
+                return (text, rezult);
+            }
         }
         public (string,string) task14(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                int count1 = rand.Next(1, 5) * 500;
+                text = string.Format("Прядильщица обслуживает 1000 веретен. Вероятность обрыва нити на одном веретене в течение" +
+                    " одной минуты равна 0,03. Составить ряд распределения числа обрывов нити в течение одной минуты. " +
+                    "Найти M(X) этой случайной величины.", count1);
+
+                double a = count1 * 0.03;
+
+                rezult += String.Format("Pn(m) = (({0:0.0})^m) / (m!) * e^({0:0.0})\n", a);
+                rezult += String.Format("M(X) = {0:0.0}", a);
+
+                return (text, rezult);
+            }
+            else
+            {
+                int count1 = rand.Next(2, 5) *100;
+                text = string.Format("Вероятность для любого абонента позвонить на коммутатор в течение" +
+                    " одного часа равна 0,01. Телефонная станция обслуживает {0} абонентов. Составить ряд" +
+                    " распределения числа абонентов, которые могут позвонить на коммутатор в течение одного" +
+                    " часа. Найти M(X) этой случайной величины.", count1);
+
+                double a = count1 * 0.01;
+
+                rezult += String.Format("Pn(m) = (({0:0.0})^m) / (m!) * e^({0:0.0})\n", a);
+                rezult += String.Format("M(X) = {0:0.0}", a);
+
+                return (text, rezult);
+            }
         }
         public (string,string) task15(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            //int count1 = rand.Next(2, 5) * 100;
+            text += "Независимые случайные величины X и Y заданы таблицами распределений. Найти:" +
+                "\n1) M(X), M(Y), D(X), D(Y);" +
+                "\n2) таблицы распределения случайных величин Z1 = 2X + Y, Z2 = X * Y;" +
+                "\n3) M(Z1), M(Z2), D(Z1), D(Z2) непосредственно по таблицам распределений и на основании" +
+                " свойств математического ожидания и дисперсии";
+
+            List<double> xp = new List<double>();
+            for(int i = 0; i < 2; i++)
+            {
+                xp.Add(rand.Next(2, 5)/10f);
+            }
+            xp.Add(1- xp[0]-xp[1]);
+            List<double> yp = new List<double>();
+            for (int i = 0; i < 1; i++)
+            {
+                yp.Add(rand.Next(2, 5) / 10f);
+            }
+            yp.Add(1 - yp[0]);
+
+            List<int> x = new List<int>();
+            x.Add(-rand.Next(1, 4));
+            x.Add(rand.Next(1, 3));
+            x.Add(rand.Next(3, 6));
+            List<int> y = new List<int>();
+            y.Add(rand.Next(1, 3));
+            y.Add(rand.Next(3, 6));
+
+            double mx = 0;
+            for (int i=0; i<3; i++)
+            {
+                mx += x[i] * xp[i];
+            }
+            double my = 0;
+            for (int i = 0; i < 2; i++)
+            {
+                my += y[i] * yp[i];
+            }
+            double mz1 = mx * 2 + my;
+            double mz2 = mx * my;
+
+            double dx = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                dx += x[i] * x[i] * xp[i];
+            }
+            double dy = 0;
+            for (int i = 0; i < 2; i++)
+            {
+                dy += y[i] * y[i] * yp[i];
+            }
+            double dz1 = dx * 4 + dy;
+            double dz2 = dx * dy + mx*mx*dy+ my*my*dx;
+
+            text += String.Format("\nX |  {0} |   {1} |   {2} |\nP | {3} | {4} | {5} |", x[0], x[1], x[2], xp[0], xp[1], xp[2]);
+            text += String.Format("\nY |   {0} |   {1} |\nP | {3} | {4} |", y[0], y[1], y[0], yp[0], yp[1]);
+
+            rezult += String.Format("\n1)M(X) = {0}, D(X) = {1}, M(Y) = {2}, D(Y) = {3}\n", mx,dx,my,dy);
+
+            Dictionary<int, double> z1 = new Dictionary<int, double>();
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 2; j++)
+                {
+                    if (!z1.TryGetValue(x[i] *2+ y[j], out mx))
+                        z1.Add(x[i] *2+ y[j], xp[i] * yp[j]);
+                    else
+                        z1[x[i] *2 + y[j]] += xp[i] * yp[j];
+                }
+
+            Dictionary<int, double> z2 = new Dictionary<int, double>();
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 2; j++)
+                {
+                    if (!z2.TryGetValue(x[i]*y[j], out mx))
+                        z2.Add(x[i] * y[j], xp[i] * yp[j]);
+                    else
+                        z2[x[i] * y[j]] += xp[i] * yp[j];
+                }
+
+            rezult += String.Format("2)\nZ1 |");
+            foreach (var i in z1)
+            {
+                if (i.Key >=10)
+                    rezult += String.Format("   {0} |", i.Key);
+                else if (i.Key >=0)
+                    rezult += String.Format("    {0} |", i.Key);
+                else
+                    rezult += String.Format("   {0} |", i.Key);
+            }
+            rezult += String.Format("\nP  |");
+            foreach (var i in z1)
+            {
+                rezult += String.Format(" {0} |", i.Value);
+            }
+
+            rezult += String.Format("\nZ2 |");
+            foreach (var i in z2)
+            {
+                if (i.Key >= 10)
+                    rezult += String.Format("   {0} |", i.Key);
+                else if (i.Key >= 0)
+                    rezult += String.Format("    {0} |", i.Key);
+                else
+                    rezult += String.Format("   {0} |", i.Key);
+            }
+            rezult += String.Format("\nP  |");
+            foreach (var i in z2)
+            {
+                rezult += String.Format(" {0} |", i.Value);
+            }
+
+            rezult += String.Format("\n\n3)M(Z1) = {0}, D(Z1) = {1}, M(Z2) = {2}, D(Z2) = {3}\n", mz1, dz1, mz2, dz2);
+            return (text, rezult);
         }
         public (string,string) task16(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            //int count1 = rand.Next(2, 5) * 100;
+            text += "Дана функция распределения F(x) непрерывной случайной величины X. Требуется:" +
+                "\n1) найти плотность вероятности f(x);" +
+                "\n2) построить графики F(x) и f(x);" +
+                "\n3) найти Р(a < X < b) для данных a, b.\n";
+
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                float count1 = rand.Next(1, 3) /10f;
+                float count2 = rand.Next(4, 7) / 10f;
+                text += string.Format("F(x) = 0, x<=0; 3*x^2+2x, 0<x<=1/3; 1, x>1/3\na = {0} , b = {1}", count1,count2);
+
+                rezult += ("\nf(x) = 0, x<=0; 6*x+2, 0<x<=1/3; 0, x>1/3\n");
+                rezult += String.Format("P(a < X < b) = {0:0.0000}", 1-(3*count1*count1+2*count1));
+
+                return (text, rezult);
+            }
+            else
+            {
+                float count1 = rand.Next(1, 2);
+                float count2 = rand.Next(2, 4);
+                text += string.Format("F(x) = 0, x<=0; x^2/9, 0<x<=3; 1, x>3\na = {0} , b = {1}", count1, count2);
+
+                rezult += ("\nf(x) = 0, x<=0; 2*x/9, 0<x<=3; 0, x>3\n");
+                rezult += String.Format("P(a < X < b) = {0:0.0000}", count2*count2/9-count1*count1/9);
+
+                return (text, rezult);
+            }
         }
         public (string,string) task17(int chooseVar)
         {
@@ -743,7 +993,7 @@ namespace Test_Console
             test.Generate(10, 1, 8);
             string s1, s2;
             // все функции задания публичны, но это временно сделано для лёгкого тестирования
-            (s1,s2) = test.task12(0);
+            (s1,s2) = test.task16(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
