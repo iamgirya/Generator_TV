@@ -763,7 +763,126 @@ namespace Test_Console
         }
         public (string,string) task15(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            //int count1 = rand.Next(2, 5) * 100;
+            text += "Независимые случайные величины X и Y заданы таблицами распределений. Найти:" +
+                "\n1) M(X), M(Y), D(X), D(Y);" +
+                "\n2) таблицы распределения случайных величин Z1 = 2X + Y, Z2 = X * Y;" +
+                "\n3) M(Z1), M(Z2), D(Z1), D(Z2) непосредственно по таблицам распределений и на основании" +
+                " свойств математического ожидания и дисперсии";
+
+            List<double> xp = new List<double>();
+            for(int i = 0; i < 2; i++)
+            {
+                xp.Add(rand.Next(2, 5)/10f);
+            }
+            xp.Add(1- xp[0]-xp[1]);
+            List<double> yp = new List<double>();
+            for (int i = 0; i < 1; i++)
+            {
+                yp.Add(rand.Next(2, 5) / 10f);
+            }
+            yp.Add(1 - yp[0]);
+
+            List<int> x = new List<int>();
+            x.Add(-rand.Next(1, 4));
+            x.Add(rand.Next(1, 3));
+            x.Add(rand.Next(3, 6));
+            List<int> y = new List<int>();
+            y.Add(rand.Next(1, 3));
+            y.Add(rand.Next(3, 6));
+
+            double mx = 0;
+            for (int i=0; i<3; i++)
+            {
+                mx += x[i] * xp[i];
+            }
+            double my = 0;
+            for (int i = 0; i < 2; i++)
+            {
+                my += y[i] * yp[i];
+            }
+            double mz1 = mx * 2 + my;
+            double mz2 = mx * my;
+
+            double dx = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                dx += x[i] * x[i] * xp[i];
+            }
+            double dy = 0;
+            for (int i = 0; i < 2; i++)
+            {
+                dy += y[i] * y[i] * yp[i];
+            }
+            double dz1 = dx * 4 + dy;
+            double dz2 = dx * dy + mx*mx*dy+ my*my*dx;
+
+            text += String.Format("\nX |  {0} |   {1} |   {2} |\nP | {3} | {4} | {5} |", x[0], x[1], x[2], xp[0], xp[1], xp[2]);
+            text += String.Format("\nY |   {0} |   {1} |\nP | {3} | {4} |", y[0], y[1], y[0], yp[0], yp[1]);
+
+            rezult += String.Format("\n1)M(X) = {0}, D(X) = {1}, M(Y) = {2}, D(Y) = {3}\n", mx,dx,my,dy);
+
+            Dictionary<int, double> z1 = new Dictionary<int, double>();
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 2; j++)
+                {
+                    if (!z1.TryGetValue(x[i] *2+ y[j], out mx))
+                        z1.Add(x[i] *2+ y[j], xp[i] * yp[j]);
+                    else
+                        z1[x[i] *2 + y[j]] += xp[i] * yp[j];
+                }
+
+            Dictionary<int, double> z2 = new Dictionary<int, double>();
+            for (int i = 0; i < 3; i++)
+                for (int j = 0; j < 2; j++)
+                {
+                    if (!z2.TryGetValue(x[i]*y[j], out mx))
+                        z2.Add(x[i] * y[j], xp[i] * yp[j]);
+                    else
+                        z2[x[i] * y[j]] += xp[i] * yp[j];
+                }
+
+            rezult += String.Format("2)\nZ1 |");
+            foreach (var i in z1)
+            {
+                if (i.Key >=10)
+                    rezult += String.Format("   {0} |", i.Key);
+                else if (i.Key >=0)
+                    rezult += String.Format("    {0} |", i.Key);
+                else
+                    rezult += String.Format("   {0} |", i.Key);
+            }
+            rezult += String.Format("\nP  |");
+            foreach (var i in z1)
+            {
+                rezult += String.Format(" {0} |", i.Value);
+            }
+
+            rezult += String.Format("\nZ2 |");
+            foreach (var i in z2)
+            {
+                if (i.Key >= 10)
+                    rezult += String.Format("   {0} |", i.Key);
+                else if (i.Key >= 0)
+                    rezult += String.Format("    {0} |", i.Key);
+                else
+                    rezult += String.Format("   {0} |", i.Key);
+            }
+            rezult += String.Format("\nP  |");
+            foreach (var i in z2)
+            {
+                rezult += String.Format(" {0} |", i.Value);
+            }
+
+
+            //rezult += String.Format("M(X) = {0:0.0}", a);
+            rezult += String.Format("\n\n3)M(Z1) = {0}, D(Z1) = {1}, M(Z2) = {2}, D(Z2) = {3}\n", mz1, dz1, mz2, dz2);
+
+
+            return (text, rezult);
         }
         public (string,string) task16(int chooseVar)
         {
@@ -846,7 +965,7 @@ namespace Test_Console
             test.Generate(10, 1, 8);
             string s1, s2;
             // все функции задания публичны, но это временно сделано для лёгкого тестирования
-            (s1,s2) = test.task14(0);
+            (s1,s2) = test.task15(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
