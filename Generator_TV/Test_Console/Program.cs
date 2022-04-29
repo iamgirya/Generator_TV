@@ -935,8 +935,8 @@ namespace Test_Console
                 text += string.Format("\nf(x) = 0, x<0; a*sin(x)/3, 0<=x<=π/3; 0, x>π/3");
 
                 rezult += ("\na = 6");
-                rezult += ("\nF(x) = 0, x<0; -2*cos(x)+2, 0<=x<=1/3; 1, x>1/3\n");
-                rezult += ("\nAs(x) =  −0,50442126889; Ex(x) = −0,68036680404");
+                rezult += ("\nF(x) = 0, x<0; -2*cos(x)+2, 0<=x<=1/3; 1, x>1/3");
+                rezult += ("\nAs(x) =  -0,50442126889; Ex(x) = -0,68036680404");
 
                 return (text, rezult);
             }
@@ -945,7 +945,7 @@ namespace Test_Console
                 text += string.Format("\nf(x) = a/(1+x^2) x∈R");
 
                 rezult += ("\na = 1/π");
-                rezult += ("\nF(x) = arctan(x)/π x∈R\n");
+                rezult += ("\nF(x) = arctan(x)/π x∈R");
                 rezult += ("\nAs(x) =  не определено; Ex(x) = не определено");
 
                 return (text, rezult);
@@ -1024,7 +1024,7 @@ namespace Test_Console
             test.Generate(10, 1, 8);
             string s1, s2;
             // все функции задания публичны, но это временно сделано для лёгкого тестирования
-            (s1,s2) = test.task16(0);
+            (s1,s2) = test.task17(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
