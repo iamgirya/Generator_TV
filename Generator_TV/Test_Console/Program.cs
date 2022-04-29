@@ -899,7 +899,7 @@ namespace Test_Console
                 float count2 = rand.Next(4, 7) / 10f;
                 text += string.Format("F(x) = 0, x<=0; 3*x^2+2x, 0<x<=1/3; 1, x>1/3\na = {0} , b = {1}", count1,count2);
 
-                rezult += ("\nf(x) = 0, x<=0; 6*x+2, 0<x<=1/3; 0, x>1/3\n");
+                rezult += ("f(x) = 0, x<=0; 6*x+2, 0<x<=1/3; 0, x>1/3\n");
                 rezult += String.Format("P(a < X < b) = {0:0.0000}", 1-(3*count1*count1+2*count1));
 
                 return (text, rezult);
@@ -918,7 +918,38 @@ namespace Test_Console
         }
         public (string,string) task17(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            //int count1 = rand.Next(2, 5) * 100;
+            text += "Дана плотность вероятности f(x) непрерывной случайной величины X. Требуется:" +
+                "\n1) найти параметр a;" +
+                "\n2) найти функцию распределения F(x);" +
+                "\n3) построить графики f(x) и F(x);" +
+                "\n4) найти асимметрию и эксцесс X.";
+
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                text += string.Format("\nf(x) = 0, x<0; a*sin(x)/3, 0<=x<=π/3; 0, x>π/3");
+
+                rezult += ("\na = 6");
+                rezult += ("\nF(x) = 0, x<0; -2*cos(x)+2, 0<=x<=1/3; 1, x>1/3\n");
+                rezult += ("\nAs(x) =  −0,50442126889; Ex(x) = −0,68036680404");
+
+                return (text, rezult);
+            }
+            else
+            {
+                text += string.Format("\nf(x) = a/(1+x^2) x∈R");
+
+                rezult += ("\na = 1/π");
+                rezult += ("\nF(x) = arctan(x)/π x∈R\n");
+                rezult += ("\nAs(x) =  не определено; Ex(x) = не определено");
+
+                return (text, rezult);
+            }
         }
         public (string,string) task18(int chooseVar)
         {
