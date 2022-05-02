@@ -1,21 +1,11 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using Microsoft.Office.Interop.Word;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Xps.Packaging;
+using System.Collections.Generic;
 
 namespace W_Gen
 {
@@ -69,8 +59,15 @@ namespace W_Gen
             if (response == true)
             {
 
-                MyImage.Source = new BitmapImage(new Uri(tasksFile.FileName, UriKind.Absolute));
-                textbox_input_way.Text = tasksFile.FileName;
+
+                string newXPSDocumentName = String.Concat(System.IO.Path.GetDirectoryName(tasksFile.FileName), "\\",
+
+                               System.IO.Path.GetFileNameWithoutExtension(tasksFile.FileName), ".xps");
+                // Set DocumentViewer.Document to XPS document
+
+                documentViewer1.Document =
+
+                    ConvertWordDocToXPSDoc(tasksFile.FileName, newXPSDocumentName).GetFixedDocumentSequence();
                 MessageBox.Show("Successfully done");
 
             }
@@ -112,15 +109,26 @@ namespace W_Gen
             
         }
 
-        private int numbOfVars = 0;
-        private void TextBox_I(object sender, TextChangedEventArgs e)
-        {
+        private int numbOfVars, startTask, endTask;
+        List<string> fioList = null;
 
-        }
+       Generator_TV Generator_TV = new Generator_TV();
 
         private void Generate_Click(object sender, RoutedEventArgs e)
         {
-            numbOfVars = Convert.ToInt32(TextboxVars.Text);
+            //numbOfVars = Convert.ToInt32(TextboxVars.Text);
+            numbOfVars = 10;
+            startTask = 1;
+            endTask = 10;
+          
+           
+
+        }
+
+
+
+        private void TextBox_I(object sender, TextChangedEventArgs e)
+        {
 
         }
 
