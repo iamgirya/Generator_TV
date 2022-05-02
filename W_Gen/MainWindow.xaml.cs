@@ -1,11 +1,11 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.Office.Interop.Word;
+using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.Office.Interop.Word;
 using System.Windows.Xps.Packaging;
-using System.Collections.Generic;
 
 namespace W_Gen
 {
@@ -22,7 +22,7 @@ namespace W_Gen
         private XpsDocument ConvertWordDocToXPSDoc(string wordDocName, string xpsDocName)
 
         {
-            // Create a WordApplication and add Document to it
+
             Microsoft.Office.Interop.Word.Application
 
                 wordApplication = new Microsoft.Office.Interop.Word.Application();
@@ -63,7 +63,6 @@ namespace W_Gen
                 string newXPSDocumentName = String.Concat(System.IO.Path.GetDirectoryName(tasksFile.FileName), "\\",
 
                                System.IO.Path.GetFileNameWithoutExtension(tasksFile.FileName), ".xps");
-                // Set DocumentViewer.Document to XPS document
 
                 documentViewer1.Document =
 
@@ -73,46 +72,30 @@ namespace W_Gen
             }
         }
 
-       /* private void Students_Click(object sender, RoutedEventArgs e)
-        {
-
-            Microsoft.Win32.OpenFileDialog tasksFile = new Microsoft.Win32.OpenFileDialog();
-
-            tasksFile.Multiselect = false;
-
-            tasksFile.DefaultExt = ".docx";
-            tasksFile.Filter = "(.docx)|*.docx";
-
-
-            bool? response = tasksFile.ShowDialog();
-            if (response == true)
-            {
-
-                MyImage.Source = new BitmapImage(new Uri(tasksFile.FileName, UriKind.Absolute));
-                textbox_input_way.Text = tasksFile.FileName;
-                MessageBox.Show("Successfully done");
-
-            }
-        }
-       */
+        private Outt outt = new Outt();
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-            saveFileDialog.FileName = "Контрольная работа " + groupName;
+            saveFileDialog.FileName = "Контрольная работа " + groupName + " ";
 
             saveFileDialog.Filter = "(*.docx)|*.docx";
-
+            (string, string) solve = ("URAAAAA154", "23154");
+            string fileNameSaveAnswer = saveFileDialog.FileName + " answer ";
             if (saveFileDialog.ShowDialog() == true)
+            {
                 File.WriteAllText(saveFileDialog.FileName, TextboxTasks.Text);
-            
+                outt.Save(saveFileDialog.FileName, fileNameSaveAnswer, solve);
+            }
+
+
         }
 
         private int numbOfVars, startTask, endTask;
         List<string> fioList = null;
 
-       Generator_TV Generator_TV = new Generator_TV();
+        Generator_TV Generator_TV = new Generator_TV();
 
         private void Generate_Click(object sender, RoutedEventArgs e)
         {
@@ -120,8 +103,9 @@ namespace W_Gen
             numbOfVars = 10;
             startTask = 1;
             endTask = 10;
-          
            
+
+
 
         }
 

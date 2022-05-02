@@ -34,3 +34,8 @@ D:\1\Generator_TV\W_Gen\obj\Debug\W_Gen.Properties.Resources.resources
 D:\1\Generator_TV\W_Gen\obj\Debug\W_Gen.csproj.GenerateResource.cache
 D:\1\Generator_TV\W_Gen\obj\Debug\W_Gen.csproj.CoreCompileInputs.cache
 D:\1\Generator_TV\W_Gen\obj\Debug\W_Gen.csproj.CopyComplete
+D:\1\Generator_TV\W_Gen\bin\Debug\InputOutput.exe
+D:\1\Generator_TV\W_Gen\bin\Debug\Xceed.Document.NET.dll
+D:\1\Generator_TV\W_Gen\bin\Debug\Xceed.Words.NET.dll
+D:\1\Generator_TV\W_Gen\bin\Debug\InputOutput.pdb
+D:\1\Generator_TV\W_Gen\bin\Debug\InputOutput.exe.config
