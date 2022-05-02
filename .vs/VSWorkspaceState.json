@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\W_Gen",
-    "\\W_Gen\\obj",
-    "\\W_Gen\\packages",
-    "\\W_Gen\\Properties"
+    ""
   ],
-  "SelectedNode": "\\W_Gen\\MainWindow.xaml",
+  "SelectedNode": "\\Generator_TV.sln",
   "PreviewInSolutionExplorer": false
 }
