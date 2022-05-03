@@ -951,17 +951,133 @@ namespace W_Gen
                 return (text, rezult);
             }
         }
-        public (string,string) task18(int chooseVar)
+        public (string, string) task18(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            text += "Дана плотность вероятности f(x) непрерывной случайной величины X, имеющая две ненулевые составляющие формулы. Требуется:" +
+                "\n1)Проверить свойство -∞∫∞(f(x)dx)=1" +
+                "\n2)Построить график f(x)" +
+                "\n3)Найти функцию распределния F(x)" +
+                "\n4)Найти P(a <= X <= b) для данных a,b" +
+                "\n5)Найти M(X),D(x),σ(X)";
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                rezult += "\n Условие выполняется.";
+                double count1 = rand.Next(0, 13) / -10.0;
+                double count2 = rand.Next(1, 30) / 10.0;
+                text += string.Format("f(x) = 0, x<=0; x/8, 0<x<=2; 1, 2<x<11/4; 0, x>11/4 \na = {0} , b = {1}", count1, count2);
+                rezult += "\n F(x)= 0, x<=0; x^2/16, 0<x<=2; x-7/4, 2<x<11/4; 1, x>11/4 \n";
+
+                double mx = 0.0;
+                double dx = 0.0;
+
+                //P(a<x<b) в разных случаях
+                if (count2 <= 2.0)
+                {
+                    rezult += String.Format("P(a < X < b) = {0:0.0000}", (count2 * count2 / 16.0));
+                    mx = count2 * count2 * count2 / 24.0;
+                    dx = count2 * count2 * count2 * count2 / 32.0;
+                }
+
+                if (count2 >= 2.0 && count2 <= 11.0 / 4.0)
+                {
+                    rezult += String.Format("P(a < X < b) = {0:0.0000}", (2.0 * 2.0 / 16.0) + (count2 - 2.0));
+                    mx = count2 * count2 * count2 / 24.0 + (count2 * count2 / 2.0 - 2.0 * 2.0 / 2.0);
+                    dx = count2 * count2 * count2 * count2 / 32f + (count2 * count2 * count2 / 3.0 - 2.0 * 2.0 * 2.0 / 3.0);
+                }
+
+                if (count2 > 11.0 / 4.0)
+                {
+                    rezult += String.Format("P(a < X < b) = {0:0.0000}", (2f * 2f / 16f) + (11f / 4f - 2f));
+                    mx = 2.0 * 2.0 * 2.0 / 24.0 + ((11.0 / 4.0 * 11.0 / 4.0) / 2.0 - 2.0 * 2.0 / 2.0);
+                    dx = 2.0 * 2.0 * 2.0 * 2.0 / 32.0 + ((11.0 / 4.0 * 11.0 / 4.0 * 11.0 / 4.0) / 3.0 - 2.0 * 2.0 * 2.0 / 3.0);
+                }
+
+                double sx = Math.Sqrt(dx);
+                rezult += String.Format("M(X)={0:0.0000}; D(X)={1:0.0000}; σ(X)={2:0.0000}", mx, dx, sx);
+            }
+            else
+            {
+                rezult += "\n Условие выполняется.";
+                float count1 = rand.Next(11, 20) / -10f;
+                float count2 = rand.Next(-10, 30) / 10f;
+                text += string.Format("f(x) = 0, x<=-1; 1/2, -1<x<=0; 1/2-x/4, 0<x<=2; 0, x>2 \na = {0} , b = {1}", count1, count2);
+                rezult += "\n F(x)= 0, x<=-1; x/2+1/2, -1<x<=0; -x^2/8+x/2+1/2, 0<x<=2; 1, x>2 \n";
+                float mx = 0f;
+                float dx = 0f;
+                //P(a<x<b) в разных случаях
+                if (count2 <= 0f)
+                {
+                    rezult += String.Format("P(a < X < b) = {0:0.0000}", (count2 / 2f - 1f / -2f));
+                    mx = (count2 * count2 / 4f - 1f * 1f / 4f);
+                    dx = (count2 * count2 * count2 / 6f - 1f * 1f * 1f / -6f);
+                }
+
+                if (count2 > 0f && count2 <= 2f)
+                {
+                    rezult += String.Format("P(a < X < b) = {0:0.0000}", (0f / 2f + 1f / 2f) + (count2 * count2 / (-8f) + count2 / 2f + 1f / 2f) - (1f / 2f));
+                    mx = (0f / 4f - 1f * 1f / 4f) + (count2 * count2 / 4f - count2 * count2 * count2 / 12f) - (0f / 4f - 0f / 12f);
+                    dx = (0f / 6f + 1f / 6f) +
+                        (count2 * count2 * count2 / 6f - count2 * count2 * count2 * count2 / 16f) - (0f / 6f - 0f / 16f);
+                }
+
+                if (count2 > 2f)
+                {
+                    rezult += String.Format("P(a < X < b) = {0:0.0000}", (1f / 2f) + (1f / 2f));
+                    mx = (0f / 4f - 1f * 1f / 4f) + (2f * 2f / 4f - 2f * 2f * 2f / 12f) - (0f / 4f - 0f / 12f);
+                    dx = (0f / 6f + 1f / 6f) + (2f * 2f * 2f / 6f - 2f * 2f * 2f * 2f / 16f) - (0f / 4f - 0f / 12f);
+                }
+
+
+                double sx = Math.Sqrt(dx);
+                rezult += String.Format("M(X)={0:0.0000}; D(X)={1:0.0000}; σ(X)={2:0.0000}", mx, dx, sx);
+            }
+            return (text, rezult);
         }
-        public (string,string) task19(int chooseVar)
+        public (string, string) task19(int chooseVar)
         {
-            return ("","");
+            return ("", "");
         }
-        public (string,string) task20(int chooseVar)
+
+        public (string, string) task20(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                double mx = rand.Next(10, 30);
+                double sx = rand.Next(1, 10) / 10.0;
+                double delta = rand.Next(4, 30) / 100.0;
+                text += String.Format("Диаметр детали, вытачиваемой на станке, есть нормальная случайная величина (a = {0} см; σ = {1} см)." +
+                    "С какой вероятностью отклонение диаметра детали от среднего значения не превосходит по абсолютной величине {2} см?", mx, sx, delta);
+                double forLaplas = delta / sx;
+                rezult += String.Format("2*Ф({0:0.0000})", delta / sx);
+            }
+            else
+            {
+                double chislitel = rand.Next(1, 10);
+                double multStepen = rand.Next(3, 15);
+                chislitel = 1;
+                multStepen = 3;
+                text += "6. Для какого значения А функция" +
+                    String.Format("f(x) = 0 , x<0; ({0}/A)*e^(-{1}Ax) x>=0, является \n ,", chislitel, multStepen) +
+                "а) плотностью вероятности;" +
+                "б) плотностью вероятности экспоненциального закона?";
+                double solve = Math.Sqrt(chislitel) / Math.Sqrt(multStepen);
+                rezult += String.Format("а) -inf<x<0 ⋃ 0<x<{0:0.0000} ⋃ {0:0.0000}<x<+inf\n", solve);
+                rezult += String.Format("б) {0:0.0000} \n", solve);
+
+            }
+
+
+            return (text, rezult);
         }
         public (string,string) task21(int chooseVar)
         {
