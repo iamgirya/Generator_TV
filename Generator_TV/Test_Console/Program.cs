@@ -957,7 +957,33 @@ namespace W_Gen
         }
         public (string,string) task19(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                float count1 = rand.Next(1, 5) * 20;
+                text = string.Format("Дистанция X между двумя соседними самолетами в строю имеет показательное распределение с MX = 100 м. " +
+                    "Опасность столкновения самолетов возникает при уменьшении дистанции до {0} м. Найти вероятность возникно" +
+                    "вения этой опасности.", count1);
+
+                rezult += String.Format("{0}", 1-Math.Exp(-count1/100));
+
+                return (text, rezult);
+            }
+            else
+            {
+                float count1 = rand.Next(1, 11) / 20f;
+                text = string.Format("Исследуется район массовой гибели судов в войне 1939–1945 гг. Вероятность обнаружения" +
+                    " затонувшего судна за время поиска t задается формулой: Р(t) = 1– exp(–{0}*t) Пусть случайная величина" +
+                    " T — время, необходимое для обнаружения очередного судна(в часах). Найти среднее значение T.", count1);
+
+                rezult += String.Format("{0}", 1/count1);
+
+                return (text, rezult);
+            }
         }
         public (string,string) task20(int chooseVar)
         {
@@ -965,7 +991,35 @@ namespace W_Gen
         }
         public (string,string) task21(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                float count1 = rand.Next(1, 8);
+                float count2 = rand.Next(3, 7);
+                text = string.Format("Колебание прибытия вагонов на промышленную станцию имеет нормальное " +
+                    "распределение со средним квадратическим отклонением σ = {2} и средним значением, равным 40" +
+                    " вагонам в сутки. Определить вероятность того, что за сутки на станцию прибыло от {0} до {1} вагонов.", 40-count1, 40 + count1, count2);
+
+                rezult += String.Format("2*Ф({0})", count1/count2);
+
+                return (text, rezult);
+            }
+            else
+            {
+                float count1 = rand.Next(1, 5)*10;
+                float count2 = rand.Next(1, 4)*10;
+                text = string.Format("Число вагонов в прибывающем на расформирование составе является" +
+                    " случайной величиной, распределенной по нормальному закону с параметрами σ = {1}, m = 100. " +
+                    "Определить вероятность того, что в составе будет не более {0} вагонов.", 100-count1, count2);
+
+                rezult += String.Format("0,5 - Ф({0})", count1 / count2);
+
+                return (text, rezult);
+            }
         }
         (string, string) multiTask(int taskNumber, int chooseVar)
         {
@@ -1024,7 +1078,7 @@ namespace W_Gen
             test.Generate(10, 1, 8);
             string s1, s2;
             // все функции задания публичны, но это временно сделано для лёгкого тестирования
-            (s1,s2) = test.task17(0);
+            (s1,s2) = test.task21(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
