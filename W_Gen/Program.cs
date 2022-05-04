@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Xceed.Words.NET;
+using Word = Microsoft.Office.Interop.Word;
+using System.IO;
 
 namespace W_Gen
 {
@@ -951,17 +955,133 @@ namespace W_Gen
                 return (text, rezult);
             }
         }
-        public (string,string) task18(int chooseVar)
+        public (string, string) task18(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            text += "Дана плотность вероятности f(x) непрерывной случайной величины X, имеющая две ненулевые составляющие формулы. Требуется:" +
+                "\n1)Проверить свойство -∞∫∞(f(x)dx)=1" +
+                "\n2)Построить график f(x)" +
+                "\n3)Найти функцию распределния F(x)" +
+                "\n4)Найти P(a <= X <= b) для данных a,b" +
+                "\n5)Найти M(X),D(x),σ(X)";
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                rezult += "\n Условие выполняется.";
+                double count1 = rand.Next(0, 13) / -10.0;
+                double count2 = rand.Next(1, 30) / 10.0;
+                text += string.Format("f(x) = 0, x<=0; x/8, 0<x<=2; 1, 2<x<11/4; 0, x>11/4 \na = {0} , b = {1}", count1, count2);
+                rezult += "\n F(x)= 0, x<=0; x^2/16, 0<x<=2; x-7/4, 2<x<11/4; 1, x>11/4 \n";
+
+                double mx = 0.0;
+                double dx = 0.0;
+
+                //P(a<x<b) в разных случаях
+                if (count2 <= 2.0)
+                {
+                    rezult += String.Format("P(a < X < b) = {0:0.0000}", (count2 * count2 / 16.0));
+                    mx = count2 * count2 * count2 / 24.0;
+                    dx = count2 * count2 * count2 * count2 / 32.0;
+                }
+
+                if (count2 >= 2.0 && count2 <= 11.0 / 4.0)
+                {
+                    rezult += String.Format("P(a < X < b) = {0:0.0000}", (2.0 * 2.0 / 16.0) + (count2 - 2.0));
+                    mx = count2 * count2 * count2 / 24.0 + (count2 * count2 / 2.0 - 2.0 * 2.0 / 2.0);
+                    dx = count2 * count2 * count2 * count2 / 32f + (count2 * count2 * count2 / 3.0 - 2.0 * 2.0 * 2.0 / 3.0);
+                }
+
+                if (count2 > 11.0 / 4.0)
+                {
+                    rezult += String.Format("P(a < X < b) = {0:0.0000}", (2f * 2f / 16f) + (11f / 4f - 2f));
+                    mx = 2.0 * 2.0 * 2.0 / 24.0 + ((11.0 / 4.0 * 11.0 / 4.0) / 2.0 - 2.0 * 2.0 / 2.0);
+                    dx = 2.0 * 2.0 * 2.0 * 2.0 / 32.0 + ((11.0 / 4.0 * 11.0 / 4.0 * 11.0 / 4.0) / 3.0 - 2.0 * 2.0 * 2.0 / 3.0);
+                }
+
+                double sx = Math.Sqrt(dx);
+                rezult += String.Format("M(X)={0:0.0000}; D(X)={1:0.0000}; σ(X)={2:0.0000}", mx, dx, sx);
+            }
+            else
+            {
+                rezult += "\n Условие выполняется.";
+                float count1 = rand.Next(11, 20) / -10f;
+                float count2 = rand.Next(-10, 30) / 10f;
+                text += string.Format("f(x) = 0, x<=-1; 1/2, -1<x<=0; 1/2-x/4, 0<x<=2; 0, x>2 \na = {0} , b = {1}", count1, count2);
+                rezult += "\n F(x)= 0, x<=-1; x/2+1/2, -1<x<=0; -x^2/8+x/2+1/2, 0<x<=2; 1, x>2 \n";
+                float mx = 0f;
+                float dx = 0f;
+                //P(a<x<b) в разных случаях
+                if (count2 <= 0f)
+                {
+                    rezult += String.Format("P(a < X < b) = {0:0.0000}", (count2 / 2f - 1f / -2f));
+                    mx = (count2 * count2 / 4f - 1f * 1f / 4f);
+                    dx = (count2 * count2 * count2 / 6f - 1f * 1f * 1f / -6f);
+                }
+
+                if (count2 > 0f && count2 <= 2f)
+                {
+                    rezult += String.Format("P(a < X < b) = {0:0.0000}", (0f / 2f + 1f / 2f) + (count2 * count2 / (-8f) + count2 / 2f + 1f / 2f) - (1f / 2f));
+                    mx = (0f / 4f - 1f * 1f / 4f) + (count2 * count2 / 4f - count2 * count2 * count2 / 12f) - (0f / 4f - 0f / 12f);
+                    dx = (0f / 6f + 1f / 6f) +
+                        (count2 * count2 * count2 / 6f - count2 * count2 * count2 * count2 / 16f) - (0f / 6f - 0f / 16f);
+                }
+
+                if (count2 > 2f)
+                {
+                    rezult += String.Format("P(a < X < b) = {0:0.0000}", (1f / 2f) + (1f / 2f));
+                    mx = (0f / 4f - 1f * 1f / 4f) + (2f * 2f / 4f - 2f * 2f * 2f / 12f) - (0f / 4f - 0f / 12f);
+                    dx = (0f / 6f + 1f / 6f) + (2f * 2f * 2f / 6f - 2f * 2f * 2f * 2f / 16f) - (0f / 4f - 0f / 12f);
+                }
+
+
+                double sx = Math.Sqrt(dx);
+                rezult += String.Format("M(X)={0:0.0000}; D(X)={1:0.0000}; σ(X)={2:0.0000}", mx, dx, sx);
+            }
+            return (text, rezult);
         }
-        public (string,string) task19(int chooseVar)
+        public (string, string) task19(int chooseVar)
         {
-            return ("","");
+            return ("", "");
         }
-        public (string,string) task20(int chooseVar)
+
+        public (string, string) task20(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                double mx = rand.Next(10, 30);
+                double sx = rand.Next(1, 10) / 10.0;
+                double delta = rand.Next(4, 30) / 100.0;
+                text += String.Format("Диаметр детали, вытачиваемой на станке, есть нормальная случайная величина (a = {0} см; σ = {1} см)." +
+                    "С какой вероятностью отклонение диаметра детали от среднего значения не превосходит по абсолютной величине {2} см?", mx, sx, delta);
+                double forLaplas = delta / sx;
+                rezult += String.Format("2*Ф({0:0.0000})", delta / sx);
+            }
+            else
+            {
+                double chislitel = rand.Next(1, 10);
+                double multStepen = rand.Next(3, 15);
+                chislitel = 1;
+                multStepen = 3;
+                text += "6. Для какого значения А функция" +
+                    String.Format("f(x) = 0 , x<0; ({0}/A)*e^(-{1}Ax) x>=0, является \n ,", chislitel, multStepen) +
+                "а) плотностью вероятности;" +
+                "б) плотностью вероятности экспоненциального закона?";
+                double solve = Math.Sqrt(chislitel) / Math.Sqrt(multStepen);
+                rezult += String.Format("а) -inf<x<0 ⋃ 0<x<{0:0.0000} ⋃ {0:0.0000}<x<+inf\n", solve);
+                rezult += String.Format("б) {0:0.0000} \n", solve);
+
+            }
+
+
+            return (text, rezult);
         }
         public (string,string) task21(int chooseVar)
         {
@@ -1000,25 +1120,45 @@ namespace W_Gen
         // а Дима должен её изменить таким образом, чтобы она ещё и делала запись в файл. Но основа выглядит так:
         public void Generate(int numVar, int startTask, int endTask, List<string> fioList = null)
         {
-            // случай, если требуемое количество сгенерированных вариантов больше, чем количество имеющихся фио.
-            // можно вызывать Generate с пустым fio листом, тогда варианты не будут подписаны.
+            string fileNameLoad = @"D:\Students.docx";
+            string fileNameSave = @"D:\Tasks.docx";
+            string fileNameSaveAnsw = @"D:\Answers.docx";
+
+            fioList = Inp.load(fileNameLoad);
+            var docTask = DocX.Create(@"Tasks");
+            var docAnswers = DocX.Create(@"Answers");
+            FileInfo file = new FileInfo("@Tasks");
+
             if (fioList != null && numVar > fioList.Count)
                 return;
             // для каждого варианта
             for (int k = 0; k < numVar; k++)
-            {   
+            {
+                Word._Application wordApp = new Word.Application();
+                Word.Document doc = wordApp.Documents.Add(file.FullName, Missing.Value, Missing.Value, Missing.Value);
+                wordApp.Visible = true;
+                if (k != 0)
+                    //Вставить разрыв страницы.
+                docTask.InsertParagraph(fioList[k]+" "+String.Format("Вариант {0}", k));
+                docAnswers.InsertParagraph(fioList[k] + " " + String.Format("Вариант {0}", k));
                 // генерим требуемые задачи по номеру.
                 for (int i = startTask; i <= endTask && i <22 && i > 0; i ++)
                 {
                     // если второй аргумент 0 - то задача рандомно выбирается из 1 или 6 варианта. Если 1 - из 1-го, иначе из 6-го.
-                    multiTask(i, 0);
+                    docTask.InsertParagraph(i.ToString() + "." + multiTask(i, 0).Item1);
+                    docAnswers.InsertParagraph(i.ToString() + "." + multiTask(i, 0).Item1);
+                    docAnswers.InsertParagraph(i.ToString() + ". Ответ:" + multiTask(i, 0).Item2);
+                    
                 }
+                doc.Words.Last.InsertBreak(Word.WdBreakType.wdPageBreak);
             }
+            docTask.Save();
+            docAnswers.Save();
         }
     }
     class Program
     {
-        static void n(string[] args)
+        static void main(string[] args)
         {
             Generator_TV test = new Generator_TV();
             test.Generate(10, 1, 8);
