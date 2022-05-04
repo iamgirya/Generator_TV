@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:W_Gen"
         mc:Ignorable="d"
         
-        Title="Генератор задач" Height="500" Width="800" 
-    xmlns:ui="clr-namespace:System.Windows.Documents;assembly=PresentationUI">
+        Title="Генератор задач"   
+    xmlns:ui="clr-namespace:System.Windows.Documents;assembly=PresentationUI" >
     <Window.Resources>
+        
         <Style x:Key="DocumentViewerStyle1" BasedOn="{x:Null}" TargetType="{x:Type DocumentViewer}">
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
             <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
@@ -54,22 +55,39 @@
     </Window.Resources>
     <Grid Background="#FF1F1F1F">
         <Button Content="Сохранить" HorizontalAlignment="Left" Margin="10,68,0,0"
-                VerticalAlignment="Top" Height="53" Width="86" Background="#FF31ABE6" BorderThickness="0,0,0,0" Foreground="White" 
+                VerticalAlignment="Top" Height="53" Width="136" Background="#FF31ABE6" BorderThickness="0,0,0,0" Foreground="White" 
                 Click="Save_Click"/>
+        
         <Button Content="Выбрать&#xD;&#xA; список&#xD;&#xA;студентов" HorizontalAlignment="Left" Margin="10,6,0,0"
-                VerticalAlignment="Top" Height="57" Width="86" Background="#FF7B56AC" BorderThickness="0,0,0,0" Foreground="White" Click="Students_Click"/>
+                VerticalAlignment="Top" Height="57" Width="136" Background="#FF7B56AC" BorderThickness="0,0,0,0" Foreground="White" Click="Students_Click"/>
+        
         <Button Content="Сгенерировать" HorizontalAlignment="Left" Margin="10,367,0,0" 
                 VerticalAlignment="Top" Height="33" Width="105" 
                 Background="#FF84D584" BorderThickness="0,0,0,0" Foreground="Black" 
                 Click="Generate_Click"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,155,0,0" TextWrapping="Wrap" Text="Количество&#xD;&#xA;вариантов:" VerticalAlignment="Top" Width="105" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="16" Foreground="#FFF9FAFA"
+        
+        <TextBox HorizontalAlignment="Left" Margin="10,155,0,0" TextWrapping="Wrap" Text="Количество&#xD;&#xA;вариантов:" VerticalAlignment="Top" 
+                 Width="105" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="16" Foreground="#FFF9FAFA"
                  FontWeight="Bold" IsReadOnly="True" Focusable="False"/>
+        
         <TextBox x:Name="TextboxVars" HorizontalAlignment="Left" Height="35" Margin="10,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Background="#FF3D3D3D" Foreground="White" FontSize="18" FontWeight="Normal" BorderThickness="0,0,0,0"  TextChanged="TextBox_I" BorderBrush="#FF0337D2"/>
-        <TextBox HorizontalAlignment="Left" Margin="10,247,0,0" TextWrapping="Wrap" Text="Номера заданий:" VerticalAlignment="Top" Width="136" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="16" Foreground="#FFF9FAFA"
+        <TextBox HorizontalAlignment="Left" Margin="10,257,0,0" TextWrapping="Wrap" Text="Номера заданий:" VerticalAlignment="Top"
+                 Width="161" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="16" Foreground="#FFF9FAFA"
             FontWeight="Bold" IsReadOnly="True" Focusable="False" />
-        <TextBox x:Name="TextboxTasks" HorizontalAlignment="Left" Height="35" Margin="10,295,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Background="#FF3D3D3D" Foreground="White" FontSize="18" FontWeight="Normal" BorderThickness="0,0,0,0" TextChanged="TextBox_T" BorderBrush="#FF0337D2"/>
+        
+        <TextBox x:Name="TextboxTasks" HorizontalAlignment="Left" Height="35" Margin="10,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
+                 Width="43" Background="#FF3D3D3D" Foreground="White" FontSize="18" 
+                 FontWeight="Normal" BorderThickness="0,0,0,0" TextChanged="TextBox_T" BorderBrush="#FF0337D2"/>
+        
         <DocumentViewer x:Name="documentViewer1" Style="{DynamicResource DocumentViewerStyle1}" Margin="306,6,0,10" Background="#FF1F1F1F"/>
-
+        
+        <TextBox x:Name="TextboxTasks2" HorizontalAlignment="Left" Height="36" Margin="71,312,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                 Width="44" Background="#FF3D3D3D" Foreground="White" FontSize="18" FontWeight="Normal" BorderThickness="0,0,0,0" TextChanged="TextBox_T2" BorderBrush="#FF0337D2"/>
+        <TextBox HorizontalAlignment="Left" Margin="10,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="16" Foreground="#FFF9FAFA"
+            FontWeight="Bold" IsReadOnly="True" Focusable="False" TextChanged="TextBox_TextChanged" Text="От" />
+        <TextBox HorizontalAlignment="Left" Margin="71,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="16" Foreground="#FFF9FAFA"
+            FontWeight="Bold" IsReadOnly="True" Focusable="False" TextChanged="TextBox_TextChanged" Text="До" />
+        
     </Grid>
 
 </Window>

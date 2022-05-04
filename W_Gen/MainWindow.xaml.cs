@@ -14,6 +14,7 @@ namespace W_Gen
     {
         public MainWindow()
         {
+            
             InitializeComponent();
         }
 
@@ -46,6 +47,8 @@ namespace W_Gen
             return null;
         }
 
+        static string toFileS;
+
         private void Students_Click(object sender, RoutedEventArgs e)
         {
 
@@ -60,17 +63,25 @@ namespace W_Gen
             if (response == true)
             {
 
-
-                string newXPSDocumentName = String.Concat(System.IO.Path.GetDirectoryName(tasksFile.FileName), "\\",
-
-                               System.IO.Path.GetFileNameWithoutExtension(tasksFile.FileName), ".xps");
-
-                documentViewer1.Document =
-
-                    ConvertWordDocToXPSDoc(tasksFile.FileName, newXPSDocumentName).GetFixedDocumentSequence();
-                MessageBox.Show("Successfully done");
+                MessageBox.Show("Загружено");
 
             }
+
+            toFileS = tasksFile.FileName;
+        }
+
+      
+
+        // номера заданий 
+        // от
+        private void TextBox_T(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        // до 
+        private void TextBox_T2(object sender, TextChangedEventArgs e)
+        {
+
         }
 
         //private void Students_Click(object sender, RoutedEventArgs e)
@@ -96,52 +107,109 @@ namespace W_Gen
         //}
 
 
-        private Outt outt = new Outt();
+        Outt outt = new Outt();
 
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-
-            saveFileDialog.FileName = "Контрольная работа " + groupName + " ";
-
-            saveFileDialog.Filter = "(*.docx)|*.docx";
-            (string, string) solve = ("URAAAAA154", "23154");
-            string fileNameSaveAnswer = saveFileDialog.FileName + " answer ";
-            if (saveFileDialog.ShowDialog() == true)
-            {
-                Outt.Save(saveFileDialog.FileName, fileNameSaveAnswer, solve);
-            }
-
-
-        }
 
         private int numbOfVars, startTask, endTask;
-        List<string> fioList = null;
+        string varPathAns;
+        string varPathTasks;
+        List<string> fioList;
 
         Generator_TV Generator_TV = new Generator_TV();
 
-        private void Generate_Click(object sender, RoutedEventArgs e)
+        FileInfo file;
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //numbOfVars = Convert.ToInt32(TextboxVars.Text);
-            numbOfVars = 10;
-            startTask = 1;
-            endTask = 10;
-           
-
-
 
         }
 
+        private void Generate_Click(object sender, RoutedEventArgs e)
+        {
+            varPathAns = @"Answers.docx";
+            
 
+            startTask = Convert.ToInt32(TextboxTasks.Text);
+            endTask = Convert.ToInt32(TextboxTasks2.Text);
+            
+            fioList = Inp.Load(toFileS).Item1;
+            numbOfVars = fioList.Count;
+            if (numbOfVars == 0)
+                numbOfVars = Convert.ToInt32(TextboxVars.Text);
+            TextboxVars.Text = String.Format("{0}", numbOfVars);
+            // numbOfVars = 2;
+            //startTask = 1;
+            //endTask = 21;
+            Generator_TV.Generate(numbOfVars, startTask, endTask, toFileS, fioList);
+
+            file = new FileInfo(varPathAns);
+           
+
+            string newXPSDocumentName = String.Concat(System.IO.Path.GetDirectoryName(file.FullName), "\\",
+
+                           System.IO.Path.GetFileNameWithoutExtension(file.FullName), ".xps");
+
+            documentViewer1.Document =
+
+                ConvertWordDocToXPSDoc(file.FullName, newXPSDocumentName).GetFixedDocumentSequence();
+
+
+            MessageBox.Show("Успешно");
+
+        }
+
+        private void ProgressBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
 
         private void TextBox_I(object sender, TextChangedEventArgs e)
         {
-
+            
+            
         }
-
-        private void TextBox_T(object sender, TextChangedEventArgs e)
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
+            varPathAns = @"Answers.docx";
+            varPathTasks = @"Tasks.docx";
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+          
+            groupName = Inp.Load(toFileS).Item2;
+            saveFileDialog.FileName = "Контрольная работа " + groupName + "";
+            
+            saveFileDialog.Filter = "(*.docx)|*.docx";
+           
+            //(string, string) solve = ("URAAAAA154", "23154");
+
+
+            if (saveFileDialog.ShowDialog() == true )
+            {
+                string p = saveFileDialog.FileName;
+                //
+                File.Copy(new FileInfo(varPathTasks).FullName, p);
+                // fileNameSaveAnswer += " Ответы ";
+                
+
+                //Outt.Save(saveFileDialog.FileName, fileNameSaveAnswer, );
+            }
+
+            SaveFileDialog fileNameAnswer = new SaveFileDialog();
+            fileNameAnswer.FileName = "Контрольная работа " + groupName + " Ответы";
+            fileNameAnswer.Filter = "(*.docx)|*.docx";
+
+            if (fileNameAnswer.ShowDialog() == true)
+            {
+                
+                string p2 = fileNameAnswer.FileName;
+                //
+                File.Copy(new FileInfo(varPathAns).FullName, p2);
+                File.Delete(new FileInfo(varPathAns).FullName);
+                File.Delete(new FileInfo(varPathTasks).FullName);
+
+                
+            }
 
         }
+
     }
 }

@@ -11,8 +11,13 @@ namespace W_Gen
         //Функция принимает имя файла со студентами. Формат файла: в первой строке записана группа;
         //во всех последующих записаны Фамилия Имя студентов, каждый новый студент пишется с красной строки(с абзаца(с Enter'а))
         //Возвращает список список студентов в виде коллекции List<string>
-        public static (List<string>, string) load(string fileNameLoad)
+        public static (List<string>, string) Load(string fileNameLoad)
         {
+            if(fileNameLoad == null)
+                return (new List<string>(), "");
+            FileInfo file = new FileInfo(fileNameLoad);
+            if(file.Length==0)
+                return (new List<string>(),"");
             var doc2 = DocX.Load(fileNameLoad);
             var paraList = doc2.Paragraphs;
             paraList.ToString();
