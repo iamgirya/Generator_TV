@@ -123,7 +123,7 @@ namespace W_Gen
         {
 
         }
-
+        int i = 0;
         private void Generate_Click(object sender, RoutedEventArgs e)
         {
             varPathAns = @"Answers.docx";
@@ -143,17 +143,19 @@ namespace W_Gen
             Generator_TV.Generate(numbOfVars, startTask, endTask, toFileS, fioList);
 
             file = new FileInfo(varPathAns);
-           
 
+            
             string newXPSDocumentName = String.Concat(System.IO.Path.GetDirectoryName(file.FullName), "\\",
 
-                           System.IO.Path.GetFileNameWithoutExtension(file.FullName), ".xps");
+                           System.IO.Path.GetFileNameWithoutExtension(file.FullName) + i.ToString(), ".xps");
+            i++;
 
             documentViewer1.Document =
 
                 ConvertWordDocToXPSDoc(file.FullName, newXPSDocumentName).GetFixedDocumentSequence();
 
-
+            
+            
             MessageBox.Show("Успешно");
 
         }
@@ -162,6 +164,24 @@ namespace W_Gen
         {
 
         }
+
+        private void helpBut_Click(object sender, RoutedEventArgs e)
+        {
+            string helpText = "Все кнопки требуют нажатия только один раз \n \n" +
+                "Список студентов должен быть представлен в формате .docx файла БЕЗ пустой строки до и после номера варианта. Пример: \n \n" +
+                " Группа 26 \n" +
+                " 1. ФИО \n \n " +
+                "Загрузить файл со студентами - кнопка Выбрать список студентов \n \n " +
+                "При загрузке файла количество вариантов задаётся автоматически \n " +
+                "Если файл не загружен, необходимо ввести количество вариантов вручную \n \n" +
+                "Перед генерацией ввести номера задач 1-21 \n \n" +
+                "Нажать на кнопку Сгенерировать для генерации вариантов ОДИН РАЗ, после этого в окне предпросмотра появится файл с вариантами и ответами\n \n" +
+                "Для сохранения файлов нажать на кнопку Сохранить, сначала сохраняется файл с задачами БЕЗ ответов, затем сохраняется файл С ОТВЕТАМИ \n \n" +
+                "Готово! Вы великолепны! ";
+            MessageBox.Show(helpText);
+        }
+
+       
 
         private void TextBox_I(object sender, TextChangedEventArgs e)
         {
@@ -210,6 +230,6 @@ namespace W_Gen
             }
 
         }
-
+        
     }
 }
