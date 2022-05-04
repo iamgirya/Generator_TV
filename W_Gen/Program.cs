@@ -1042,9 +1042,35 @@ namespace W_Gen
             }
             return (text, rezult);
         }
-        public (string, string) task19(int chooseVar)
+      public (string,string) task19(int chooseVar)
         {
-            return ("", "");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                float count1 = rand.Next(1, 5) * 20;
+                text = string.Format("Дистанция X между двумя соседними самолетами в строю имеет показательное распределение с MX = 100 м. " +
+                    "Опасность столкновения самолетов возникает при уменьшении дистанции до {0} м. Найти вероятность возникно" +
+                    "вения этой опасности.", count1);
+
+                rezult += String.Format("{0}", 1-Math.Exp(-count1/100));
+
+                return (text, rezult);
+            }
+            else
+            {
+                float count1 = rand.Next(1, 11) / 20f;
+                text = string.Format("Исследуется район массовой гибели судов в войне 1939–1945 гг. Вероятность обнаружения" +
+                    " затонувшего судна за время поиска t задается формулой: Р(t) = 1– exp(–{0}*t) Пусть случайная величина" +
+                    " T — время, необходимое для обнаружения очередного судна(в часах). Найти среднее значение T.", count1);
+
+                rezult += String.Format("{0}", 1/count1);
+
+                return (text, rezult);
+            }
         }
 
         public (string, string) task20(int chooseVar)
@@ -1083,10 +1109,41 @@ namespace W_Gen
 
             return (text, rezult);
         }
-        public (string,string) task21(int chooseVar)
+
+
+         public (string,string) task21(int chooseVar)
         {
-            return ("","");
+            string text = "";
+            string rezult = "";
+            Random rand = new Random();
+            if (chooseVar == 0)
+                chooseVar = rand.Next(1, 3);
+            if (chooseVar == 1)
+            {
+                float count1 = rand.Next(1, 8);
+                float count2 = rand.Next(3, 7);
+                text = string.Format("Колебание прибытия вагонов на промышленную станцию имеет нормальное " +
+                    "распределение со средним квадратическим отклонением σ = {2} и средним значением, равным 40" +
+                    " вагонам в сутки. Определить вероятность того, что за сутки на станцию прибыло от {0} до {1} вагонов.", 40-count1, 40 + count1, count2);
+
+                rezult += String.Format("2*Ф({0})", count1/count2);
+
+                return (text, rezult);
+            }
+            else
+            {
+                float count1 = rand.Next(1, 5)*10;
+                float count2 = rand.Next(1, 4)*10;
+                text = string.Format("Число вагонов в прибывающем на расформирование составе является" +
+                    " случайной величиной, распределенной по нормальному закону с параметрами σ = {1}, m = 100. " +
+                    "Определить вероятность того, что в составе будет не более {0} вагонов.", 100-count1, count2);
+
+                rezult += String.Format("0,5 - Ф({0})", count1 / count2);
+
+                return (text, rezult);
+            }
         }
+        
         (string, string) multiTask(int taskNumber, int chooseVar)
         {
             switch (taskNumber)
@@ -1120,37 +1177,54 @@ namespace W_Gen
         // а Дима должен её изменить таким образом, чтобы она ещё и делала запись в файл. Но основа выглядит так:
         public void Generate(int numVar, int startTask, int endTask, List<string> fioList = null)
         {
-            string fileNameLoad = @"D:\Students.docx";
-            string fileNameSave = @"D:\Tasks.docx";
-            string fileNameSaveAnsw = @"D:\Answers.docx";
+            string fileNameLoad = @"D:\file1.docx";
+            //string fileNameSave = @"D:\Tasks.docx";
+            //string fileNameSaveAnsw = @"D:\Answers.docx";
 
-            fioList = Inp.load(fileNameLoad);
-            var docTask = DocX.Create(@"Tasks");
-            var docAnswers = DocX.Create(@"Answers");
-            FileInfo file = new FileInfo("@Tasks");
+            string group = "";
+            (fioList, group) = Inp.load(fileNameLoad);
+            numVar = fioList.Count;
+            var docTask = DocX.Create(@"Tasks.docx");
+            var docAnswers = DocX.Create(@"Answers.docx");
 
-            if (fioList != null && numVar > fioList.Count)
-                return;
+            //var docTask = DocX.Create(fileNameSave);
+            //var docAnswers = DocX.Create(fileNameSaveAnsw);
+
+
+            // случай, если требуемое количество сгенерированных вариантов больше, чем количество имеющихся фио.
+            // можно вызывать Generate с пустым fio листом, тогда варианты не будут подписаны.
+            //if (fioList != null && numVar > fioList.Count)
+            //    return;
             // для каждого варианта
             for (int k = 0; k < numVar; k++)
             {
-                Word._Application wordApp = new Word.Application();
-                Word.Document doc = wordApp.Documents.Add(file.FullName, Missing.Value, Missing.Value, Missing.Value);
-                wordApp.Visible = true;
-                if (k != 0)
-                    //Вставить разрыв страницы.
-                docTask.InsertParagraph(fioList[k]+" "+String.Format("Вариант {0}", k));
-                docAnswers.InsertParagraph(fioList[k] + " " + String.Format("Вариант {0}", k));
+                if (fioList.Count - 1 > k)
+                {
+                    docTask.InsertParagraph(fioList[k] + " " + group + " " + String.Format("Вариант {0}", k + 1));
+                    docTask.InsertParagraph();
+                    docAnswers.InsertParagraph(fioList[k] + " " + group + " " + String.Format("Вариант {0}", k + 1));
+                    docAnswers.InsertParagraph();
+                }
+                else
+                {
+                    docTask.InsertParagraph(String.Format("Вариант {0}", k + 1));
+                    docTask.InsertParagraph();
+                    docAnswers.InsertParagraph(String.Format("Вариант {0}", k + 1));
+                    docAnswers.InsertParagraph();
+                }
                 // генерим требуемые задачи по номеру.
-                for (int i = startTask; i <= endTask && i <22 && i > 0; i ++)
+                for (int i = startTask; i <= endTask && i < 22 && i > 0; i++)
                 {
                     // если второй аргумент 0 - то задача рандомно выбирается из 1 или 6 варианта. Если 1 - из 1-го, иначе из 6-го.
                     docTask.InsertParagraph(i.ToString() + "." + multiTask(i, 0).Item1);
+                    docTask.InsertParagraph();
                     docAnswers.InsertParagraph(i.ToString() + "." + multiTask(i, 0).Item1);
                     docAnswers.InsertParagraph(i.ToString() + ". Ответ:" + multiTask(i, 0).Item2);
-                    
+                    docAnswers.InsertParagraph();
+
                 }
-                doc.Words.Last.InsertBreak(Word.WdBreakType.wdPageBreak);
+                docTask.InsertSectionPageBreak();
+                docAnswers.InsertSectionPageBreak();
             }
             docTask.Save();
             docAnswers.Save();
