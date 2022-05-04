@@ -19,24 +19,27 @@ namespace W_Gen
             if (chooseVar == 1)
             {
                 text = "Наугад выбирается номер телефона из ";
-                int count = rand.Next(6,10);
+                int count = rand.Next(5,9);
                 text += (count).ToString();
                 text += " цифр. Найти вероятность того, что:\nа) это номер телефона А. Б. Пугачевой;\nб) все цифры номера различны.";
 
                 int ans1 = 1;
-                rezult = "1/"+(Math.Pow(10,count)).ToString() + "\n";
+                string supStr = "0,";
+                for (int i = 1; i < count; i++)
+                    supStr += "0";
+                rezult += supStr+ "1" + "\n";
 
                 ans1 = 1;
                 for (int i = 1; i < count; i++)
                     ans1 *= (10 - i);
-                rezult += ans1.ToString() + "/" + (Math.Pow(10, count-1)).ToString();
+                rezult += Math.Round(ans1/Math.Pow(10, count-1), 4).ToString();
 
                 return (text,rezult);
             }
             else
             {
                 text = "Пронумерованные ";
-                int count1 = rand.Next(8, 11);
+                int count1 = rand.Next(6, 8);
                 text += (count1.ToString());
                 text += " вариантов контрольной работы по математике распределяются случайным образом среди ";
 
@@ -49,12 +52,12 @@ namespace W_Gen
                 text += (count2.ToString());
                 text += " вариантов распределятся последовательно.";
 
-                rezult = "2/" + (count1*(count1-1)).ToString() + "\n";
+                rezult = Math.Round((2f/(count1*(count1-1))),6) + "\n";
 
-                int ans1 = 1;
+                float ans1 = 1;
                 for (int i = 0; i < count3; i++)
                     ans1 *= (count1 - i);
-                rezult += "1/" + (ans1).ToString();
+                rezult += Math.Round((1/ans1),6);
 
                 return (text, rezult);
             }
@@ -88,7 +91,7 @@ namespace W_Gen
 
                 ulong ans1, ans2;
                 (ans1,ans2) = TeorVer.Baes(20, 10, 4, count1);
-                rezult = (ans1).ToString() +"/"+ (ans2).ToString() + "\n";
+                rezult = Math.Round(Convert.ToDouble(ans1)/ans2,4) + "\n";
 
                 double ans3 = 0;
                 for (int i = 4; i >= count2; i--)
@@ -96,7 +99,7 @@ namespace W_Gen
                     (ans1, ans2) = TeorVer.Baes(20, 10, 4, i);
                     ans3 += Convert.ToDouble(ans1) / Convert.ToDouble(ans2);
                 }
-                rezult += string.Format("{0:0.000000}", ans3);
+                rezult += Math.Round(ans3,4);
 
                 return (text, rezult);
             }
@@ -120,7 +123,7 @@ namespace W_Gen
 
                 ulong ans1, ans2;
                 (ans1, ans2) = TeorVer.Baes(16, 8, count1, count1);
-                rezult = (ans1).ToString() + "/" + (ans2).ToString() + "\n";
+                rezult = Math.Round( Convert.ToDouble(ans1) /ans2,4) + "\n";
 
                 double ans3 = 0;
                 for (int i = count2; i <= count1; i++)
@@ -128,7 +131,7 @@ namespace W_Gen
                     (ans1, ans2) = TeorVer.Baes(16, 8, count1, i);
                     ans3 += Convert.ToDouble(ans1) / Convert.ToDouble(ans2);
                 }
-                rezult += string.Format("{0:0.000000}", ans3);
+                rezult += Math.Round(ans3,4);
 
                 return (text, rezult);
             }
@@ -177,7 +180,7 @@ namespace W_Gen
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
             {
-                text = " В библиотеке университета путей сообщения есть две книги по теории вероятностей: В.Е.Гмурмана и " +
+                text = "В библиотеке университета путей сообщения есть две книги по теории вероятностей: В.Е.Гмурмана и " +
                     "А.А.Боровкова. Вероятность того, что в течение семестра будет затребована книга первого автора," +
                     " равна ";
                 float count1 = rand.Next(4, 10)/10f;
@@ -192,8 +195,8 @@ namespace W_Gen
                     "\nб) хотя бы одна из книг будет выдана;" +
                     "\nв) будет выдана только книга А. А.Боровкова?";
                 
-                rezult += string.Format("{0:0.00}", ((1-count1)*(1-count2)))+"\n"+ string.Format("{0:0.00}", 1 - (1 - count1) * (1 - count2)) +
-                    "\n" + string.Format("{0:0.00}", (1 - count1) * (count2));
+                rezult += Math.Round(((1-count1)*(1-count2)),4)+"\n"+ Math.Round(1 - (1 - count1) * (1 - count2),4) +
+                    "\n" + Math.Round((1 - count1) * (count2),4);
                 return (text, rezult);
             }
             else
@@ -211,8 +214,8 @@ namespace W_Gen
                     "\nб) вообще не поймают карасей;" +
                     "\nв) поймает карася только первый рыбак?";
 
-                rezult += string.Format("{0:0.00}", 1 - (1 - count1) * (1 - count2)) +
-                    "\n" + string.Format("{0:0.00}", (1 - count1) * (1 - count2)) + "\n" + string.Format("{0:0.00}", (count1) * (1-count2));
+                rezult += Math.Round(1 - (1 - count1) * (1 - count2),4) +
+                    "\n" + Math.Round((1 - count1) * (1 - count2),4) + "\n" + Math.Round((count1) * (1-count2),4);
 
                 return (text, rezult);
             }
@@ -277,7 +280,7 @@ namespace W_Gen
                 text += " зеленых шаров. Проводится испытание по последовательному извлечению двух шаров " +
                     "без возвращения. Найдите вероятность того, что второй шар будет зеленый, если известно, что первый шар был красный.";
 
-                rezult += count2.ToString() + "/" + (count2 + count1 - 1).ToString();
+                rezult += Math.Round((count2/(count2 + count1 - 1)),4);
                 return (text, rezult);
             }
             else
@@ -290,7 +293,7 @@ namespace W_Gen
                 text += (count2).ToString();
                 text += " оранжевых. Из нее поочередно извлекаются три шара. Найти вероятность того, что все вынутые шары оранжевые";
 
-                rezult += (count2* (count2-1)*(count2-2)).ToString() + "/" + (count1 * (count1 - 1) * (count1 - 2)).ToString();
+                rezult += Math.Round((count2* (count2-1)*(count2-2))/(count1 * (count1 - 1) * (count1 - 2)),4);
                 return (text, rezult);
             }
         }
@@ -318,7 +321,7 @@ namespace W_Gen
                 text += ". Найти вероятность того, что ковбой доберется до клада по одной из них при условии," +
                     " что дорога выбирается им наудачу.";
 
-                rezult += (count2+count1+ count3).ToString() + "/" + (3).ToString();
+                rezult += Math.Round((count2+count1+ count3)/(3),4);
                 return (text, rezult);
             }
             else
@@ -339,7 +342,7 @@ namespace W_Gen
                 text += " соответственно. Какова вероятность того, что больному Сидорову будет поставлен" +
                     " неверный диагноз, если он выбирает врача случайным образом.";
 
-                rezult += ((1-count2) + (1 - count1) + (1 - count3)).ToString() + "/" + (3).ToString();
+                rezult += Math.Round( ((1-count2) + (1 - count1) + (1 - count3))/3, 4).ToString();
                 return (text, rezult);
             }
         }
@@ -425,10 +428,11 @@ namespace W_Gen
                 text += ". Животное, которое удалось поймать врачу, оказалось здоровым. Какова " +
                     "вероятность того, что врач осматривал муравьеда?";
 
-                rezult += (((1-count5)*(count2/(count1+count2+count3)))/
+                rezult += Math.Round((((1-count5)*(count2/(count1+count2+count3)))/
                     (((1 - count5) * (count2 / (count1 + count2 + count3)))+
                     ((1 - count4) * (count1 / (count1 + count2 + count3))) +
-                    ((1 - count6) * (count3 / (count1 + count2 + count3))))).ToString();
+                    ((1 - count6) * (count3 / (count1 + count2 + count3)))))
+                    ,4);
 
                 return (text, rezult);
             }
@@ -457,7 +461,7 @@ namespace W_Gen
                     ans += TeorVer.Bernulli(count2, i, count1);
                 }
 
-                rezult += (TeorVer.Bernulli(count2, count3, count1)).ToString() + "\n" + (ans).ToString();
+                rezult += Math.Round((TeorVer.Bernulli(count2, count3, count1)),6) + "\n" + Math.Round((ans),6).ToString();
                 return (text, rezult);
             }
             else
@@ -476,7 +480,7 @@ namespace W_Gen
                     ans += TeorVer.Bernulli(count2, i, count1);
                 }
 
-                rezult += (ans).ToString();
+                rezult += Math.Round((ans),4);
                 return (text, rezult);
             }
         }
@@ -499,8 +503,8 @@ namespace W_Gen
 
                 double sqrt = Math.Sqrt(count2*(1-count1)*count1);
 
-                rezult += (1/sqrt).ToString() + " * ф("+((count2/2-count2*count1)/sqrt).ToString() +")\n" 
-                    +"Ф("+ ((count2 / 2 - count2 * count1) / sqrt).ToString() + ") - Ф(" + ((- count2 * count1) / sqrt).ToString() + ")";
+                rezult += Math.Round((1/sqrt),4) + " * ф("+ Math.Round(((count2/2-count2*count1)/sqrt),4) +")\n" 
+                    +"Ф("+ Math.Round(((count2 / 2 - count2 * count1) / sqrt),4) + ") - Ф(" + Math.Round(((- count2 * count1) / sqrt),4) + ")";
                 return (text, rezult);
             }
             else
@@ -516,8 +520,8 @@ namespace W_Gen
 
                 double sqrt = Math.Sqrt(count2 * (1 - count1) * count1);
 
-                rezult += "Ф(" + (((count3 - 5) - count2 * count1) / sqrt).ToString() + ") - Ф(" + (((count3 - 20) - count2 * count1) / sqrt).ToString() + ")\n"
-                    + (1 / sqrt).ToString() + " * ф(" + ((count3 - count2 * count1) / sqrt).ToString() + ")";
+                rezult += "Ф(" + Math.Round((((count3 - 5) - count2 * count1) / sqrt),4) + ") - Ф(" + Math.Round((((count3 - 20) - count2 * count1) / sqrt),4) + ")\n"
+                    + Math.Round((1 / sqrt),4) + " * ф(" + Math.Round(((count3 - count2 * count1) / sqrt),4) + ")";
                 return (text, rezult);
             }
         }
@@ -541,7 +545,7 @@ namespace W_Gen
                 double ans = 0;
                 for (int i = 0; i <= count2; i++)
                     ans += Math.Pow(a, i) * Math.Exp(-a) / Convert.ToDouble(TeorVer.Fact(i));
-                rezult += (ans).ToString();
+                rezult += Math.Round((ans),4);
                 return (text, rezult);
             }
             else
@@ -558,7 +562,7 @@ namespace W_Gen
                 double ans = 0;
                 for (int i = 0; i <= count2; i++)
                     ans += Math.Pow(a, i) * Math.Exp(-a) / Convert.ToDouble(TeorVer.Fact(i));
-                rezult += (ans).ToString();
+                rezult += Math.Round((ans),4);
                 return (text, rezult);
             }
         }
@@ -598,24 +602,24 @@ namespace W_Gen
                     dx += i*i * vers[i - 1];
 
                 rezult += "\n";
-                rezult += String.Format("P(x = {0}) = ", 1) + String.Format("{0:0.0000}", vers[0]) + "\n";
+                rezult += String.Format("P(x = {0}) = ", 1) + Math.Round(vers[0],4) + "\n";
                 for (int i = 2; i <= count1; i++)
                 {
-                    rezult += String.Format("P(x = {0}) = ", i) + String.Format("{0:0.0000}", vers[i-1]) + "\n";
+                    rezult += String.Format("P(x = {0}) = ", i) + Math.Round(vers[i-1],4) + "\n";
                 }
 
                 rezult += "\n" +
-                    "M(X) = " + String.Format("{0:0.0000}", mx) + "\n" +
-                    "D(X) = " + String.Format("{0:0.0000}", dx) + "\n" +
-                    "σ(X) = " + String.Format("{0:0.0000}", Math.Sqrt(dx)) + "\n" +
+                    "M(X) = " + Math.Round(mx,4) + "\n" +
+                    "D(X) = " + Math.Round(dx,4) + "\n" +
+                    "σ(X) = " + Math.Round(Math.Sqrt(dx),4) + "\n" +
                     "F(X) = \n";
-                rezult += "    | " + String.Format("{0:0.0000}", vers[0]) + String.Format(", x = {0}\n", 1);
+                rezult += "    | " + Math.Round(vers[0],4) + String.Format(", x = {0}\n", 1);
                 for (int i = 2; i <= count1; i++)
                 {
                     double sumVer = 0;
                     for (int j = 0; j < i; j++)
                         sumVer += vers[j];
-                    rezult += "    | " + String.Format("{0:0.0000}", sumVer) + String.Format(", x = {0}\n", i);
+                    rezult += "    | " + Math.Round(sumVer,4) + String.Format(", x = {0}\n", i);
                 }
                 return (text, rezult);
             }
@@ -639,9 +643,9 @@ namespace W_Gen
                         String.Format("P(x = {0}) = ", count2.ToString()) + String.Format("{0:0.000}", 1/1000f) + "\n" +
                         String.Format("P(x = {0}) = ", (count2/2).ToString()) + String.Format("{0:0.000}", 1/1000f);
                 rezult += "\n" +
-                    "M(X) = " + String.Format("{0:0.0000}", mx) + "\n" +
-                    "D(X) = " + String.Format("{0:0.0000}", dx) + "\n" +
-                    "σ(X) = " + String.Format("{0:0.0000}", Math.Sqrt(dx)) + "\n" +
+                    "M(X) = " + Math.Round(mx,4) + "\n" +
+                    "D(X) = " + Math.Round(dx,4) + "\n" +
+                    "σ(X) = " + Math.Round(Math.Sqrt(dx),4) + "\n" +
                     "F(X) = \n" +
                     "    | " + String.Format("{0:0.000}", 997 / 1000f) + ", x = 0\n" +
                     "    | " + String.Format("{0:0.000}", 998 / 1000f) + String.Format(", x = {0}\n", count2/2) +
@@ -682,12 +686,12 @@ namespace W_Gen
                 rezult += "\n";
                 for (int i = 0; i <= count2; i++)
                 {
-                    rezult += String.Format("P(x = {0}) = ", i) + String.Format("{0:0.0000}", vers[i]) + "\n";
+                    rezult += String.Format("P(x = {0}) = ", i) + Math.Round(vers[i],4) + "\n";
                 }
 
                 rezult += "\n" +
-                    "M(X) = " + String.Format("{0:0.0000}", mx) + "\n" +
-                    "D(X) = " + String.Format("{0:0.0000}", dx) + "\n";
+                    "M(X) = " + Math.Round(mx,4) + "\n" +
+                    "D(X) = " + Math.Round(dx,4) + "\n";
                 return (text, rezult);
             }
             else
@@ -715,12 +719,12 @@ namespace W_Gen
                 rezult += "\n";
                 for (int i = 0; i <= count2; i++)
                 {
-                    rezult += String.Format("P(x = {0}) = ", i) + String.Format("{0:0.0000}", vers[i]) + "\n";
+                    rezult += String.Format("P(x = {0}) = ", i) + Math.Round(vers[i],4) + "\n";
                 }
 
                 rezult += "\n" +
-                    "M(X) = " + String.Format("{0:0.0000}", mx) + "\n" +
-                    "D(X) = " + String.Format("{0:0.0000}", dx) + "\n";
+                    "M(X) = " + Math.Round(mx,4) + "\n" +
+                    "D(X) = " + Math.Round(dx,4) + "\n";
                 return (text, rezult);
             }
         }
@@ -900,7 +904,7 @@ namespace W_Gen
                 text += string.Format("F(x) = 0, x<=0; 3*x^2+2x, 0<x<=1/3; 1, x>1/3\na = {0} , b = {1}", count1,count2);
 
                 rezult += ("f(x) = 0, x<=0; 6*x+2, 0<x<=1/3; 0, x>1/3\n");
-                rezult += String.Format("P(a < X < b) = {0:0.0000}", 1-(3*count1*count1+2*count1));
+                rezult += String.Format("P(a < X < b) = {0}", Math.Round(1 -(3*count1*count1+2*count1),4));
 
                 return (text, rezult);
             }
@@ -911,7 +915,7 @@ namespace W_Gen
                 text += string.Format("F(x) = 0, x<=0; x^2/9, 0<x<=3; 1, x>3\na = {0} , b = {1}", count1, count2);
 
                 rezult += ("\nf(x) = 0, x<=0; 2*x/9, 0<x<=3; 0, x>3\n");
-                rezult += String.Format("P(a < X < b) = {0:0.0000}", count2*count2/9-count1*count1/9);
+                rezult += String.Format("P(a < X < b) = {0:0.0000}", Math.Round(count2 *count2/9-count1*count1/9,4));
 
                 return (text, rezult);
             }
@@ -936,7 +940,7 @@ namespace W_Gen
 
                 rezult += ("\na = 6");
                 rezult += ("\nF(x) = 0, x<0; -2*cos(x)+2, 0<=x<=1/3; 1, x>1/3");
-                rezult += ("\nAs(x) =  -0,50442126889; Ex(x) = -0,68036680404");
+                rezult += ("\nAs(x) =  -0,5044; Ex(x) = -0,6804");
 
                 return (text, rezult);
             }
@@ -969,7 +973,7 @@ namespace W_Gen
                     "Опасность столкновения самолетов возникает при уменьшении дистанции до {0} м. Найти вероятность возникно" +
                     "вения этой опасности.", count1);
 
-                rezult += String.Format("{0}", 1-Math.Exp(-count1/100));
+                rezult += Math.Round(1 -Math.Exp(-count1/100),4);
 
                 return (text, rezult);
             }
@@ -980,7 +984,7 @@ namespace W_Gen
                     " затонувшего судна за время поиска t задается формулой: Р(t) = 1– exp(–{0}*t) Пусть случайная величина" +
                     " T — время, необходимое для обнаружения очередного судна(в часах). Найти среднее значение T.", count1);
 
-                rezult += String.Format("{0}", 1/count1);
+                rezult += Math.Round(1 /count1,4);
 
                 return (text, rezult);
             }
@@ -1004,7 +1008,7 @@ namespace W_Gen
                     "распределение со средним квадратическим отклонением σ = {2} и средним значением, равным 40" +
                     " вагонам в сутки. Определить вероятность того, что за сутки на станцию прибыло от {0} до {1} вагонов.", 40-count1, 40 + count1, count2);
 
-                rezult += String.Format("2*Ф({0})", count1/count2);
+                rezult += String.Format("2*Ф({0})", Math.Round(count1 /count2,4));
 
                 return (text, rezult);
             }
@@ -1016,7 +1020,7 @@ namespace W_Gen
                     " случайной величиной, распределенной по нормальному закону с параметрами σ = {1}, m = 100. " +
                     "Определить вероятность того, что в составе будет не более {0} вагонов.", 100-count1, count2);
 
-                rezult += String.Format("0,5 - Ф({0})", count1 / count2);
+                rezult += String.Format("0,5 - Ф({0})", Math.Round(count1 / count2,4));
 
                 return (text, rezult);
             }
@@ -1065,7 +1069,10 @@ namespace W_Gen
                 for (int i = startTask; i <= endTask && i <22 && i > 0; i ++)
                 {
                     // если второй аргумент 0 - то задача рандомно выбирается из 1 или 6 варианта. Если 1 - из 1-го, иначе из 6-го.
-                    multiTask(i, 0);
+                    string s1, s2;
+                    (s1, s2) = multiTask(i, 6);
+                    Console.WriteLine(s1);
+                    Console.WriteLine(s2);
                 }
             }
         }
@@ -1075,10 +1082,10 @@ namespace W_Gen
         static void Main(string[] args)
         {
             Generator_TV test = new Generator_TV();
-            test.Generate(10, 1, 8);
+            test.Generate(1, 1, 21);
             string s1, s2;
             // все функции задания публичны, но это временно сделано для лёгкого тестирования
-            (s1,s2) = test.task21(0);
+            (s1,s2) = test.task9(0);
             Console.WriteLine(s1);
             Console.WriteLine(s2);
             Console.ReadKey();
