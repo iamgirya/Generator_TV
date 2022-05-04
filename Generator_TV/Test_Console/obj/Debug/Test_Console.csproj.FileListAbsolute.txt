@@ -13,3 +13,16 @@ D:\1\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.csproj.Sugges
 D:\1\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.csproj.CoreCompileInputs.cache
 D:\1\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.exe
 D:\1\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.pdb
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\bin\Debug\Test_Console.exe.config
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\bin\Debug\Test_Console.exe
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\bin\Debug\Test_Console.pdb
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\obj\Debug\Test_Console.csproj.AssemblyReference.cache
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\obj\Debug\Test_Console.csproj.CoreCompileInputs.cache
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\obj\Debug\Test_Console.exe
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\obj\Debug\Test_Console.pdb
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\bin\Debug\InputOutput.exe
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\bin\Debug\Xceed.Document.NET.dll
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\bin\Debug\Xceed.Words.NET.dll
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\bin\Debug\InputOutput.pdb
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\bin\Debug\InputOutput.exe.config
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\obj\Debug\Test_Console.csproj.CopyComplete

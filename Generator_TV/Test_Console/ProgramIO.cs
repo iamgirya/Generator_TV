@@ -26,7 +26,7 @@ namespace W_Gen
                 paraList[i].Text.Trim();
                 studList.Add(paraList[i].Text);
             }
-            return (studList, group);
+            return (studList,group);
         }
     }
 

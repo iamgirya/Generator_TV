@@ -6,6 +6,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Xps.Packaging;
+using Xceed.Words.NET;
 
 namespace W_Gen
 {
@@ -72,6 +73,29 @@ namespace W_Gen
             }
         }
 
+        //private void Students_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //    var doc1 = DocX.Create(@"jopa4.docx");
+        //    FileInfo file = new FileInfo(@"jopa4.docx");
+        //    doc1.InsertParagraph("Ya ebal sobaku1");
+        //    doc1.InsertParagraph("Ya ebal sobaku2");
+        //    doc1.InsertParagraph("Ya ebal sobaku3");
+        //    doc1.InsertParagraph("Ya ebal sobaku4");
+        //    doc1.InsertParagraph("Ya ebal sobaku5");
+        //    doc1.InsertParagraph("Ya ebal sobaku6");
+        //    doc1.Save();
+        //    string newXPSDocumentName = String.Concat(System.IO.Path.GetDirectoryName(file.FullName), "\\",
+
+        //                       System.IO.Path.GetFileNameWithoutExtension(file.FullName), ".xps");
+
+        //    documentViewer1.Document =
+
+        //        ConvertWordDocToXPSDoc(file.FullName, newXPSDocumentName).GetFixedDocumentSequence();
+        //    MessageBox.Show("Successfully done");
+        //}
+
+
         private Outt outt = new Outt();
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -85,8 +109,7 @@ namespace W_Gen
             string fileNameSaveAnswer = saveFileDialog.FileName + " answer ";
             if (saveFileDialog.ShowDialog() == true)
             {
-                File.WriteAllText(saveFileDialog.FileName, TextboxTasks.Text);
-                outt.Save(saveFileDialog.FileName, fileNameSaveAnswer, solve);
+                Outt.Save(saveFileDialog.FileName, fileNameSaveAnswer, solve);
             }
 
 

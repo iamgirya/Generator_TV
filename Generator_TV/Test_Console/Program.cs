@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xceed.Words.NET;
+using Word = Microsoft.Office.Interop.Word;
+using System.IO;
+using System.Reflection;
+
 
 namespace W_Gen
 {
@@ -1116,20 +1121,44 @@ namespace W_Gen
         // а Дима должен её изменить таким образом, чтобы она ещё и делала запись в файл. Но основа выглядит так:
         public void Generate(int numVar, int startTask, int endTask, List<string> fioList = null)
         {
+            string fileNameLoad = @"D:\file1.docx";
+            string fileNameSave = @"D:\Tasks.docx";
+            string fileNameSaveAnsw = @"D:\Answers.docx";
+            
+            string group = "";
+            (fioList, group) = Inp.load(fileNameLoad);
+            numVar = fioList.Count;
+            var docTask = DocX.Create(@"Tasks.docx");
+            var docAnswers = DocX.Create(@"Answers.docx");
+
+
             // случай, если требуемое количество сгенерированных вариантов больше, чем количество имеющихся фио.
             // можно вызывать Generate с пустым fio листом, тогда варианты не будут подписаны.
-            if (fioList != null && numVar > fioList.Count)
-                return;
+            //if (fioList != null && numVar > fioList.Count)
+            //    return;
             // для каждого варианта
             for (int k = 0; k < numVar; k++)
-            {   
+            {
+                docTask.InsertParagraph(fioList[k] + " "+ group + " " + String.Format("Вариант {0}", k+1));
+                docTask.InsertParagraph();
+                docAnswers.InsertParagraph(fioList[k] + " " + group + " " + String.Format("Вариант {0}", k+1));
+                docAnswers.InsertParagraph();
                 // генерим требуемые задачи по номеру.
-                for (int i = startTask; i <= endTask && i <22 && i > 0; i ++)
+                for (int i = startTask; i <= endTask && i < 22 && i > 0; i++)
                 {
                     // если второй аргумент 0 - то задача рандомно выбирается из 1 или 6 варианта. Если 1 - из 1-го, иначе из 6-го.
-                    multiTask(i, 0);
+                    docTask.InsertParagraph(i.ToString() + "." + multiTask(i, 0).Item1);
+                    docTask.InsertParagraph();
+                    docAnswers.InsertParagraph(i.ToString() + "." + multiTask(i, 0).Item1);
+                    docAnswers.InsertParagraph(i.ToString() + ". Ответ:" + multiTask(i, 0).Item2);
+                    docAnswers.InsertParagraph();
+
                 }
+                docTask.InsertSectionPageBreak();
+                docAnswers.InsertSectionPageBreak();
             }
+            docTask.Save();
+            docAnswers.Save();
         }
     }
     class Program
