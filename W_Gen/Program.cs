@@ -974,11 +974,11 @@ namespace W_Gen
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
             {
-                rezult += "\n Условие выполняется.";
+                rezult += "\nУсловие выполняется.";
                 double count1 = rand.Next(0, 13) / -10.0;
                 double count2 = rand.Next(1, 30) / 10.0;
                 text += string.Format("f(x) = 0, x<=0; x/8, 0<x<=2; 1, 2<x<11/4; 0, x>11/4 \na = {0} , b = {1}", count1, count2);
-                rezult += "\n F(x)= 0, x<=0; x^2/16, 0<x<=2; x-7/4, 2<x<11/4; 1, x>11/4 \n";
+                rezult += "\nF(x)= 0, x<=0; x^2/16, 0<x<=2; x-7/4, 2<x<11/4; 1, x>11/4 \n";
 
                 double mx = 0.0;
                 double dx = 0.0;
@@ -1010,11 +1010,11 @@ namespace W_Gen
             }
             else
             {
-                rezult += "\n Условие выполняется.";
+                rezult += "\nУсловие выполняется.";
                 float count1 = rand.Next(11, 20) / -10f;
                 float count2 = rand.Next(-10, 30) / 10f;
                 text += string.Format("f(x) = 0, x<=-1; 1/2, -1<x<=0; 1/2-x/4, 0<x<=2; 0, x>2 \na = {0} , b = {1}", count1, count2);
-                rezult += "\n F(x)= 0, x<=-1; x/2+1/2, -1<x<=0; -x^2/8+x/2+1/2, 0<x<=2; 1, x>2 \n";
+                rezult += "\nF(x)= 0, x<=-1; x/2+1/2, -1<x<=0; -x^2/8+x/2+1/2, 0<x<=2; 1, x>2 \n";
                 float mx = 0f;
                 float dx = 0f;
                 //P(a<x<b) в разных случаях
@@ -1101,12 +1101,12 @@ namespace W_Gen
                // chislitel = 1;
                // multStepen = 3;
                 text += "Для какого значения А функция" +
-                    String.Format("f(x) = 0 , x<0; ({0}/A)*e^(-{1}Ax) x>=0, является \n ", chislitel, multStepen) +
-                "а) плотностью вероятности;\n" +
-                "б) плотностью вероятности экспоненциального закона?";
+                    String.Format("f(x) = 0 , x<0; ({0}/A)*e^(-{1}Ax) x>=0, является \n", chislitel, multStepen) +
+                "а)плотностью вероятности;\n" +
+                "б)плотностью вероятности экспоненциального закона?";
                 double solve = Math.Sqrt(chislitel) / Math.Sqrt(multStepen);
                 rezult += String.Format("а) -inf<x<0 ⋃ 0<x<{0:0.0000} ⋃ {0:0.0000}<x<+inf\n", solve);
-                rezult += String.Format("б) {0:0.0000} \n", solve);
+                rezult += String.Format("б) √{0}/√{1} \n", chislitel, multStepen);
 
             }
 
@@ -1203,32 +1203,34 @@ namespace W_Gen
             {
                 if (fioList.Count - 1 > k)
                 {
-                    docTask.InsertParagraph(fioList[k] + " " + group + " " + String.Format("Вариант {0}", k + 1));
+                    docTask.InsertParagraph(fioList[k] + " " + group + " " + String.Format("Вариант {0}", k + 1)).FontSize(14D).Font("Times New Roman");
                     docTask.InsertParagraph();
-                    docAnswers.InsertParagraph(fioList[k] + " " + group + " " + String.Format("Вариант {0}", k + 1));
+                    docAnswers.InsertParagraph(fioList[k] + " " + group + " " + String.Format("Вариант {0}", k + 1)).FontSize(14D).Font("Times New Roman");
                     docAnswers.InsertParagraph();
                 }
                 else
                 {
-                    docTask.InsertParagraph(String.Format("Вариант {0}", k + 1));
+                    docTask.InsertParagraph(String.Format("Вариант {0}", k + 1)).FontSize(14D).Font("Times New Roman");
                     docTask.InsertParagraph();
-                    docAnswers.InsertParagraph(String.Format("Вариант {0}", k + 1));
+                    docAnswers.InsertParagraph(String.Format("Вариант {0}", k + 1)).FontSize(14D).Font("Times New Roman");
                     docAnswers.InsertParagraph();
                 }
                 // генерим требуемые задачи по номеру.
                 for (int i = startTask; i <= endTask && i < 22 && i > 0; i++)
                 {
                     // если второй аргумент 0 - то задача рандомно выбирается из 1 или 6 варианта. Если 1 - из 1-го, иначе из 6-го.
-                    docTask.InsertParagraph(i.ToString() + "." + multiTask(i, 0).Item1);
+                    docTask.InsertParagraph(i.ToString() + "." + multiTask(i, 0).Item1).FontSize(12D).Font("Times New Roman");
                     docTask.InsertParagraph();
-                    docAnswers.InsertParagraph(i.ToString() + "." + multiTask(i, 0).Item1);
+                    docAnswers.InsertParagraph(i.ToString() + "." + multiTask(i, 0).Item1).FontSize(12D).Font("Times New Roman");
                     docAnswers.InsertParagraph();
-                    docAnswers.InsertParagraph(i.ToString() + ". Ответ:" + multiTask(i, 0).Item2);
+                    docAnswers.InsertParagraph("Ответ:" + multiTask(i, 0).Item2).FontSize(12D).Font("Times New Roman");
                     docAnswers.InsertParagraph();
 
                 }
-                docTask.InsertSectionPageBreak();
-                docAnswers.InsertSectionPageBreak();
+                if (k != numVar - 1) { 
+                    docTask.InsertSectionPageBreak();
+                    docAnswers.InsertSectionPageBreak();
+                }
             }
             docTask.Save();
             docAnswers.Save();
