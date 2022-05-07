@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\W_Gen"
   ],
-  "SelectedNode": "\\Generator_TV.sln",
+  "SelectedNode": "\\W_Gen\\W_Gen.sln",
   "PreviewInSolutionExplorer": false
 }
