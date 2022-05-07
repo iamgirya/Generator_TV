@@ -6,7 +6,52 @@
         xmlns:local="clr-namespace:W_Gen"
         mc:Ignorable="d"
         
-        Title="Генератор задач" Height="500" Width="800" >
+        Title="Генератор задач" Height="500" Width="800" 
+    xmlns:ui="clr-namespace:System.Windows.Documents;assembly=PresentationUI">
+    <Window.Resources>
+        <Style x:Key="DocumentViewerStyle1" BasedOn="{x:Null}" TargetType="{x:Type DocumentViewer}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="ContextMenu" Value="{DynamicResource {ComponentResourceKey ResourceId=PUIDocumentViewerContextMenu, TypeInTargetAssembly={x:Type ui:PresentationUIStyleResources}}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DocumentViewer}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Focusable="False">
+                            <Grid Background="{TemplateBinding Background}" KeyboardNavigation.TabNavigation="Local">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <ContentControl Grid.Column="0"  Visibility="Collapsed" Focusable="{TemplateBinding Focusable}" Grid.Row="0" Style="{DynamicResource {ComponentResourceKey ResourceId=PUIDocumentViewerToolBarStyleKey, TypeInTargetAssembly={x:Type ui:PresentationUIStyleResources}}}" TabIndex="0"/>
+                                <ScrollViewer x:Name="PART_ContentHost" Grid.Column="0" CanContentScroll="true" Focusable="{TemplateBinding Focusable}" HorizontalScrollBarVisibility="Auto" IsTabStop="true" Grid.Row="1" TabIndex="1" Foreground="#FF1F1F1F" Background="#FF1F1F1F" BorderBrush="#FF1F1F1F"/>
+                                <DockPanel Grid.Row="1">
+                                    <FrameworkElement  DockPanel.Dock="Right" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
+                                    <Rectangle Height="10" VerticalAlignment="top" Visibility="Visible">
+                                        <Rectangle.Fill>
+                                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                                <LinearGradientBrush.GradientStops>
+                                                    <GradientStopCollection>
+                                                        <GradientStop Color="#66000000" Offset="0"/>
+                                                        <GradientStop Color="Transparent" Offset="1"/>
+                                                    </GradientStopCollection>
+                                                </LinearGradientBrush.GradientStops>
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                </DockPanel>
+                                <ContentControl  Visibility="Collapsed" x:Name="PART_FindToolBarHost" Grid.Column="0" Focusable="{TemplateBinding Focusable}" Grid.Row="2" TabIndex="2"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid Background="#FF1F1F1F">
         <Button Content="Сохранить" HorizontalAlignment="Left" Margin="10,68,0,0"
                 VerticalAlignment="Top" Height="53" Width="86" Background="#FF31ABE6" BorderThickness="0,0,0,0" Foreground="White" 
@@ -19,17 +64,11 @@
                 Click="Generate_Click"/>
         <TextBox HorizontalAlignment="Left" Margin="10,155,0,0" TextWrapping="Wrap" Text="Количество&#xD;&#xA;вариантов:" VerticalAlignment="Top" Width="105" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="16" Foreground="#FFF9FAFA"
                  FontWeight="Bold" IsReadOnly="True" Focusable="False"/>
-        <TextBox x:Name="TextboxVars" HorizontalAlignment="Left" Height="35" Margin="10,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Background="#FF3D3D3D" Foreground="White" FontSize="18" FontWeight="Normal" BorderThickness="0,0,0,0"  TextChanged="TextBox_I" InputScope="Number" BorderBrush="#FF0337D2"/>
-        <TextBox x:Name="textbox_input_way"  HorizontalAlignment="Left" Margin="108,24,0,0" VerticalAlignment="Top" 
-                 Foreground="#FF7160E8" Width="572" Height="31" Background="{x:Null}" BorderBrush="{x:Null}" 
-                 IsReadOnly="True" Focusable="False" IsEnabled="False" />
-        <TextBox x:Name="textbox_output_way" HorizontalAlignment="Left" Margin="108,80,0,0" VerticalAlignment="Top" 
-                 Foreground="#FF31ABE6" Width="572" Height="29" Background="{x:Null}" BorderBrush="{x:Null}" 
-                 IsReadOnly="True" Focusable="False" IsEnabled="False" />
-        <Image HorizontalAlignment="Left" Name="MyImage"  Height="341" Margin="266,121,0,0" VerticalAlignment="Top" Width="376"/>
+        <TextBox x:Name="TextboxVars" HorizontalAlignment="Left" Height="35" Margin="10,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Background="#FF3D3D3D" Foreground="White" FontSize="18" FontWeight="Normal" BorderThickness="0,0,0,0"  TextChanged="TextBox_I" BorderBrush="#FF0337D2"/>
         <TextBox HorizontalAlignment="Left" Margin="10,247,0,0" TextWrapping="Wrap" Text="Номера заданий:" VerticalAlignment="Top" Width="136" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="16" Foreground="#FFF9FAFA"
             FontWeight="Bold" IsReadOnly="True" Focusable="False" />
-        <TextBox x:Name="TextboxTasks" HorizontalAlignment="Left" Height="35" Margin="10,295,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Background="#FF3D3D3D" Foreground="White" FontSize="18" FontWeight="Normal" BorderThickness="0,0,0,0" TextChanged="TextBox_T" InputScope="Number" BorderBrush="#FF0337D2"/>
+        <TextBox x:Name="TextboxTasks" HorizontalAlignment="Left" Height="35" Margin="10,295,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Background="#FF3D3D3D" Foreground="White" FontSize="18" FontWeight="Normal" BorderThickness="0,0,0,0" TextChanged="TextBox_T" BorderBrush="#FF0337D2"/>
+        <DocumentViewer x:Name="documentViewer1" Style="{DynamicResource DocumentViewerStyle1}" Margin="306,6,0,10" Background="#FF1F1F1F"/>
 
     </Grid>
 
