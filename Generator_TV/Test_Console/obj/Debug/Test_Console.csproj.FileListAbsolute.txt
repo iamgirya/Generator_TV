@@ -26,3 +26,9 @@ C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\bin
 C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\bin\Debug\InputOutput.pdb
 C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\bin\Debug\InputOutput.exe.config
 C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\Test_Console\obj\Debug\Test_Console.csproj.CopyComplete
+D:\1\Generator_TV\Generator_TV\Test_Console\bin\Debug\InputOutput.exe
+D:\1\Generator_TV\Generator_TV\Test_Console\bin\Debug\Xceed.Document.NET.dll
+D:\1\Generator_TV\Generator_TV\Test_Console\bin\Debug\Xceed.Words.NET.dll
+D:\1\Generator_TV\Generator_TV\Test_Console\bin\Debug\InputOutput.pdb
+D:\1\Generator_TV\Generator_TV\Test_Console\bin\Debug\InputOutput.exe.config
+D:\1\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.csproj.CopyComplete
