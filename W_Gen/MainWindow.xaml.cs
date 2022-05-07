@@ -133,7 +133,7 @@ namespace W_Gen
             endTask = Convert.ToInt32(TextboxTasks2.Text);
 
             fioList = Inp.Load(toFileS).Item1;
-            numbOfVars = fioList.Count;
+            numbOfVars = fioList.Count-1;
             if (numbOfVars == 0)
                 numbOfVars = Convert.ToInt32(TextboxVars.Text);
             TextboxVars.Text = String.Format("{0}", numbOfVars);
