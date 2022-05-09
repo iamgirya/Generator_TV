@@ -247,7 +247,7 @@ namespace W_Gen
                 text += ". Какова вероятность того," +
                     " что первый гроссмейстер выиграет матч?";
 
-                rezult +=" "+(count1 * (1 - count2) + count3 * count1).ToString();
+                rezult +=(count1 * (1 - count2) + count3 * count1).ToString();
                 return (text, rezult);
             }
             else
@@ -297,7 +297,7 @@ namespace W_Gen
                 text += (count2).ToString();
                 text += " оранжевых. Из нее поочередно извлекаются три шара. Найти вероятность того, что все вынутые шары оранжевые";
 
-                rezult +=" "+Math.Round((count2 * (count2 - 1) * (count2 - 2)) / (count1 * (count1 - 1) * (count1 - 2)), 4);
+                rezult +=Math.Round((count2 * (count2 - 1) * (count2 - 2)) / (count1 * (count1 - 1) * (count1 - 2)), 4);
                 return (text, rezult);
             }
         }
@@ -325,7 +325,7 @@ namespace W_Gen
                 text += ". Найти вероятность того, что ковбой доберется до клада по одной из них при условии," +
                     " что дорога выбирается им наудачу.";
 
-                rezult +=" "+Math.Round((count2 + count1 + count3) / (3), 4);
+                rezult +=Math.Round((count2 + count1 + count3) / (3), 4);
                 return (text, rezult);
             }
             else
@@ -346,7 +346,7 @@ namespace W_Gen
                 text += " соответственно. Какова вероятность того, что больному Сидорову будет поставлен" +
                     " неверный диагноз, если он выбирает врача случайным образом.";
 
-                rezult +=" "+Math.Round(((1 - count2) + (1 - count1) + (1 - count3)) / 3, 4).ToString();
+                rezult +=Math.Round(((1 - count2) + (1 - count1) + (1 - count3)) / 3, 4).ToString();
                 return (text, rezult);
             }
         }
@@ -391,14 +391,14 @@ namespace W_Gen
                 float sum = count1 + count2 + count3;
                 if ((count1 / sum) * count4 > (count2 / sum) * count5)
                     if ((count1 / sum) * count4 > (count3 / sum) * count6)
-                        rezult += " Живая математика";
+                        rezult += "Живая математика";
                     else
-                        rezult += " Загадки и диковинки в мире чисел";
+                        rezult += "Загадки и диковинки в мире чисел";
                 else
                     if ((count2 / sum) * count4 > (count3 / sum) * count6)
-                    rezult += " Занимательные задачи";
+                    rezult += "Занимательные задачи";
                 else
-                    rezult += " Загадки и диковинки в мире чисел";
+                    rezult += "Загадки и диковинки в мире чисел";
 
                 return (text, rezult);
             }
@@ -432,7 +432,7 @@ namespace W_Gen
                 text += ". Животное, которое удалось поймать врачу, оказалось здоровым. Какова " +
                     "вероятность того, что врач осматривал муравьеда?";
 
-                rezult +=" "+Math.Round((((1 - count5) * (count2 / (count1 + count2 + count3))) /
+                rezult +=Math.Round((((1 - count5) * (count2 / (count1 + count2 + count3))) /
                     (((1 - count5) * (count2 / (count1 + count2 + count3))) +
                     ((1 - count4) * (count1 / (count1 + count2 + count3))) +
                     ((1 - count6) * (count3 / (count1 + count2 + count3)))))
@@ -465,7 +465,7 @@ namespace W_Gen
                     ans += TeorVer.Bernulli(count2, i, count1);
                 }
 
-                rezult +=" "+Math.Round((TeorVer.Bernulli(count2, count3, count1)), 6) + "\n" + Math.Round((ans), 6).ToString();
+                rezult +=Math.Round((TeorVer.Bernulli(count2, count3, count1)), 6) + "\n" + Math.Round((ans), 6).ToString();
                 return (text, rezult);
             }
             else
@@ -484,7 +484,7 @@ namespace W_Gen
                     ans += TeorVer.Bernulli(count2, i, count1);
                 }
 
-                rezult += " " + Math.Round((ans), 4);
+                rezult +=  Math.Round((ans), 4);
                 return (text, rezult);
             }
         }
@@ -549,7 +549,7 @@ namespace W_Gen
                 double ans = 0;
                 for (int i = 0; i <= count2; i++)
                     ans += Math.Pow(a, i) * Math.Exp(-a) / Convert.ToDouble(TeorVer.Fact(i));
-                rezult += " " + Math.Round((ans), 4);
+                rezult += Math.Round((ans), 4);
                 return (text, rezult);
             }
             else
@@ -566,7 +566,7 @@ namespace W_Gen
                 double ans = 0;
                 for (int i = 0; i <= count2; i++)
                     ans += Math.Pow(a, i) * Math.Exp(-a) / Convert.ToDouble(TeorVer.Fact(i));
-                rezult += " " + Math.Round((ans), 4);
+                rezult += Math.Round((ans), 4);
                 return (text, rezult);
             }
         }
@@ -1060,7 +1060,7 @@ namespace W_Gen
                     "Опасность столкновения самолетов возникает при уменьшении дистанции до {0} м. Найти вероятность возникно" +
                     "вения этой опасности.", count1);
 
-                rezult += " " + Math.Round(1 - Math.Exp(-count1 / 100), 4);
+                rezult += Math.Round(1 - Math.Exp(-count1 / 100), 4);
 
                 return (text, rezult);
             }
@@ -1071,7 +1071,7 @@ namespace W_Gen
                     " затонувшего судна за время поиска t задается формулой: Р(t) = 1– exp(–{0}*t) Пусть случайная величина" +
                     " T — время, необходимое для обнаружения очередного судна(в часах). Найти среднее значение T.", count1);
 
-                rezult += " " + Math.Round(1 / count1, 4);
+                rezult += Math.Round(1 / count1, 4);
 
                 return (text, rezult);
             }
@@ -1092,7 +1092,7 @@ namespace W_Gen
                 text += String.Format("Диаметр детали, вытачиваемой на станке, есть нормальная случайная величина (a = {0} см; σ = {1} см).\n" +
                     "С какой вероятностью отклонение диаметра детали от среднего значения не превосходит по абсолютной величине {2} см?", mx, sx, delta);
                 double forLaplas = delta / sx;
-                rezult += " " + String.Format("2*Ф({0:0.0000})", forLaplas);
+                rezult += String.Format("2*Ф({0:0.0000})", forLaplas);
             }
             else
             {
@@ -1105,7 +1105,7 @@ namespace W_Gen
                 "а)плотностью вероятности;\n" +
                 "б)плотностью вероятности экспоненциального закона?";
                 double solve = Math.Sqrt(chislitel) / Math.Sqrt(multStepen);
-                rezult += String.Format("\nа) -inf<x<0 ⋃ 0<x<{0:0.0000} ⋃ {0:0.0000}<x<+inf\n", solve);
+                rezult += String.Format("а) -inf<x<0 ⋃ 0<x<{0:0.0000} ⋃ {0:0.0000}<x<+inf\n", solve);
                 rezult += String.Format("б) √{0}/√{1} \n", chislitel, multStepen);
 
             }
@@ -1130,7 +1130,7 @@ namespace W_Gen
                     "распределение со средним квадратическим отклонением σ = {2} и средним значением, равным 40" +
                     " вагонам в сутки. Определить вероятность того, что за сутки на станцию прибыло от {0} до {1} вагонов.", 40 - count1, 40 + count1, count2);
 
-                rezult += " " + String.Format("2*Ф({0})", Math.Round(count1 / count2, 4));
+                rezult += String.Format("2*Ф({0})", Math.Round(count1 / count2, 4));
 
                 return (text, rezult);
             }
@@ -1142,7 +1142,7 @@ namespace W_Gen
                     " случайной величиной, распределенной по нормальному закону с параметрами σ = {1}, m = 100. " +
                     "Определить вероятность того, что в составе будет не более {0} вагонов.", 100 - count1, count2);
 
-                rezult += " " + String.Format("0,5 - Ф({0})", Math.Round(count1 / count2, 4));
+                rezult += String.Format("0,5 - Ф({0})", Math.Round(count1 / count2, 4));
 
                 return (text, rezult);
             }
@@ -1221,9 +1221,9 @@ namespace W_Gen
                     // если второй аргумент 0 - то задача рандомно выбирается из 1 или 6 варианта. Если 1 - из 1-го, иначе из 6-го.
                     docTask.InsertParagraph(i.ToString() + "." + multiTask(i, 0).Item1).FontSize(12D).Font("Times New Roman");
                     docTask.InsertParagraph();
-                    docAnswers.InsertParagraph(multiTask(i, 0).Item1).FontSize(12D).Font("Times New Roman");
+                    docAnswers.InsertParagraph(i.ToString() + "."+multiTask(i, 0).Item1).FontSize(12D).Font("Times New Roman");
                     docAnswers.InsertParagraph();
-                    docAnswers.InsertParagraph("Ответ:" + multiTask(i, 0).Item2).FontSize(12D).Font("Times New Roman");
+                    docAnswers.InsertParagraph("Ответ: " + multiTask(i, 0).Item2).FontSize(12D).Font("Times New Roman");
                     docAnswers.InsertParagraph();
 
                 }
