@@ -1188,8 +1188,7 @@ namespace W_Gen
 
             //var docTask = DocX.Create(fileNameSave);
             //var docAnswers = DocX.Create(fileNameSaveAnsw);
-
-
+           
             // случай, если требуемое количество сгенерированных вариантов больше, чем количество имеющихся фио.
             // можно вызывать Generate с пустым fio листом, тогда варианты не будут подписаны.
             // для каждого варианта

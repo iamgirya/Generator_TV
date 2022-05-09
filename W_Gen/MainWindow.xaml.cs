@@ -86,7 +86,7 @@ namespace W_Gen
 
         Outt outt = new Outt();
 
-        private int numbOfVars, startTask, endTask;
+        private int numbOfVars, startTask, endTask, x,y;
         string varPathAns;
         string varPathTasks;
         List<string> fioList;
@@ -105,9 +105,27 @@ namespace W_Gen
         {
             varPathAns = @"Answers.docx";
 
-
+            if (TextboxTasks.Text.Length == 0)
+                startTask = 1;
+            else 
             startTask = Convert.ToInt32(TextboxTasks.Text);
+
+            if (TextboxTasks2.Text.Length == 0)
+                endTask = 21;
+            else
             endTask = Convert.ToInt32(TextboxTasks2.Text);
+
+            if (startTask<1 || startTask > 21) startTask = 1;
+            if (endTask<1 || endTask > 21) endTask = 21;
+            x = endTask;
+            y = startTask;
+            
+            if (x < y)
+            {
+                startTask = x;
+                endTask = y;
+               
+            }
 
             fioList = Inp.Load(toFileS).Item1;
            // if (fioList.Count>1)
@@ -115,11 +133,21 @@ namespace W_Gen
            // else 
            // numbOfVars = 0;
             if (numbOfVars == 0)
+                if (TextboxVars.Text.Length == 0)
+                    numbOfVars = 1;
+                else
                 numbOfVars = Convert.ToInt32(TextboxVars.Text);
+
+            if (numbOfVars < 1 ) numbOfVars = 1;
+            
+            
             TextboxVars.Text = String.Format("{0}", numbOfVars);
+            TextboxTasks.Text = String.Format("{0}", startTask);
+            TextboxTasks2.Text = String.Format("{0}", endTask); 
             // numbOfVars = 2;
             //startTask = 1;
             //endTask = 21;
+            
             Generator_TV.Generate(numbOfVars, startTask, endTask, toFileS, fioList);
 
             file = new FileInfo(varPathAns);
