@@ -29,7 +29,7 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <ContentControl Grid.Column="0"  Visibility="Collapsed" Focusable="{TemplateBinding Focusable}" Grid.Row="0" Style="{DynamicResource {ComponentResourceKey ResourceId=PUIDocumentViewerToolBarStyleKey, TypeInTargetAssembly={x:Type ui:PresentationUIStyleResources}}}" TabIndex="0"/>
-                                <ScrollViewer x:Name="PART_ContentHost" Grid.Column="0" CanContentScroll="true" Focusable="{TemplateBinding Focusable}" HorizontalScrollBarVisibility="Auto" IsTabStop="true" Grid.Row="1" TabIndex="1" Foreground="#FF1F1F1F" Background="#FF1F1F1F" BorderBrush="#FF1F1F1F"/>
+                                <ScrollViewer x:Name="PART_ContentHost" Grid.Column="0" IsDeferredScrollingEnabled="True" CanContentScroll="true" Focusable="{TemplateBinding Focusable}" HorizontalScrollBarVisibility="Auto" IsTabStop="true" Grid.Row="1" TabIndex="1" Foreground="#FF1F1F1F" Background="#FF1F1F1F" BorderBrush="#FF1F1F1F"/>
                                 <DockPanel Grid.Row="1">
                                     <FrameworkElement  DockPanel.Dock="Right" Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" />
                                     <Rectangle Height="10" VerticalAlignment="top" Visibility="Visible">
