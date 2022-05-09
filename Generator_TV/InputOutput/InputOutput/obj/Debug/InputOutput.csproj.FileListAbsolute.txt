@@ -19,3 +19,13 @@ C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\InputOutput\Inpu
 C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.csproj.CopyComplete
 C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.exe
 C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.pdb
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.csproj.AssemblyReference.cache
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.csproj.CoreCompileInputs.cache
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.pdb
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\bin\Debug\InputOutput.dll.config
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\bin\Debug\InputOutput.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\bin\Debug\InputOutput.pdb
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\bin\Debug\Xceed.Document.NET.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\bin\Debug\Xceed.Words.NET.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.csproj.CopyComplete
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.dll
