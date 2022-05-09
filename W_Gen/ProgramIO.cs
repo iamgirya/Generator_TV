@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using Xceed.Words.NET;
+using System.Text.RegularExpressions;
 
 namespace W_Gen
 {
@@ -11,11 +12,18 @@ namespace W_Gen
         //Функция принимает имя файла со студентами. Формат файла: в первой строке записана группа;
         //во всех последующих записаны Фамилия Имя студентов, каждый новый студент пишется с красной строки(с абзаца(с Enter'а))
         //Возвращает список список студентов в виде коллекции List<string>
+        static bool IsEmptyOrWhitespace(string s)
+        {
+            if (s == null || s.Length == 0) return true;
+            for (int i = 0; i < s.Length; i++) if (!char.IsWhiteSpace(s[i])) return false;
+            return true;
+        }
         public static (List<string>, string) Load(string fileNameLoad)
         {
             if(fileNameLoad == null)
                 return (new List<string>(), "");
             FileInfo file = new FileInfo(fileNameLoad);
+            Regex regForSpaces = new Regex(@"\s*");
             if(file.Length==0)
                 return (new List<string>(),"");
             var doc2 = DocX.Load(fileNameLoad);
@@ -29,7 +37,8 @@ namespace W_Gen
             {
                 paraList[i].Text.Trim(charsToTrim);
                 paraList[i].Text.Trim();
-                studList.Add(paraList[i].Text);
+                if(!IsEmptyOrWhitespace(paraList[i].Text))
+                    studList.Add(paraList[i].Text);
             }
             return (studList, group);
         }
