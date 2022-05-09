@@ -9,3 +9,13 @@ D:\1\Generator_TV\Generator_TV\InputOutput\InputOutput\bin\Debug\Xceed.Words.NET
 D:\1\Generator_TV\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.csproj.CopyComplete
 D:\1\Generator_TV\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.exe
 D:\1\Generator_TV\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.pdb
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\InputOutput\InputOutput\bin\Debug\InputOutput.exe.config
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\InputOutput\InputOutput\bin\Debug\InputOutput.exe
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\InputOutput\InputOutput\bin\Debug\InputOutput.pdb
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\InputOutput\InputOutput\bin\Debug\Xceed.Document.NET.dll
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\InputOutput\InputOutput\bin\Debug\Xceed.Words.NET.dll
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.csproj.AssemblyReference.cache
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.csproj.CoreCompileInputs.cache
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.csproj.CopyComplete
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.exe
+C:\Users\Дмитрий\Source\Repos\Generator_TV3\Generator_TV\InputOutput\InputOutput\obj\Debug\InputOutput.pdb
