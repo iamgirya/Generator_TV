@@ -83,17 +83,5 @@ namespace InputOutput
             }
 
         }
-
-
-        static void Main(string[] args)
-        {
-            string fileNameLoad = @"D:\Students.docx";
-            string fileNameSave = @"D:\Tasks.docx";
-            string fileNameSaveAnsw = @"D:\Answers.docx";
-            load(fileNameLoad);
-            (string, string) solve = ("URAAAAA154", "23154");
-            save(fileNameSave, fileNameSaveAnsw, solve);
-            Console.ReadKey();
-        }
     }
 }

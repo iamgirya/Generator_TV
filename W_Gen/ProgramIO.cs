@@ -5,17 +5,23 @@ using Xceed.Words.NET;
 
 namespace W_Gen
 {
-    class Inp
+    public class Inp
     {
 
         //Функция принимает имя файла со студентами. Формат файла: в первой строке записана группа;
         //во всех последующих записаны Фамилия Имя студентов, каждый новый студент пишется с красной строки(с абзаца(с Enter'а))
         //Возвращает список список студентов в виде коллекции List<string>
-        public List<string> load(string fileNameLoad)
+        public static (List<string>, string) Load(string fileNameLoad)
         {
+            if(fileNameLoad == null)
+                return (new List<string>(), "");
+            FileInfo file = new FileInfo(fileNameLoad);
+            if(file.Length==0)
+                return (new List<string>(),"");
             var doc2 = DocX.Load(fileNameLoad);
             var paraList = doc2.Paragraphs;
             paraList.ToString();
+            string group = paraList[0].Text;
             List<string> studList = new List<string>();
             char[] charsToTrim = { '1', '2', '3', '4', '5', '6', '7', '8', '9', '.' };
 
@@ -25,18 +31,19 @@ namespace W_Gen
                 paraList[i].Text.Trim();
                 studList.Add(paraList[i].Text);
             }
-            return studList;
+            return (studList, group);
         }
     }
 
-    class Outt
+    public class Outt
     {
         //Функция сохранения. Принимает путь до файла с заданиями, путь до файла с ответами, пару стрингов(задача, ответ)
         //Куча проверок на существование файла, итоговый результат - сохранённый файл. Шобы проверить сработало или нет, лично я лезу в сами файлы
         //Каждая новая задача записывается с абзаца. С ответом так же. Не ведётся подсчёт количества задач, поскольку это нужно будет делать в основном цикле генератора
         //Функция работает для сохранения ТОЛЬКО ОДНОЙ задачи.
-        public void Save(string fileNameSave, string fileNameSaveAnswer, (string, string) pair)
+        public static void Save(string fileNameSave, string fileNameSaveAnswer, (string, string) pair)
         {
+
             FileInfo file = new FileInfo(fileNameSave);
             FileInfo fileAnswer = new FileInfo(fileNameSaveAnswer);
             if (file.Exists && fileAnswer.Exists)
@@ -54,6 +61,7 @@ namespace W_Gen
                 {
                     var docTask = DocX.Create(fileNameSave);
                     var docAnsw = DocX.Create(fileNameSaveAnswer);
+
                     docTask.InsertParagraph(pair.Item1);
                     docAnsw.InsertParagraph(pair.Item2);
                     docTask.Save();
