@@ -83,31 +83,8 @@ namespace W_Gen
 
         }
 
-        //private void Students_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //    var doc1 = DocX.Create(@"jopa4.docx");
-        //    FileInfo file = new FileInfo(@"jopa4.docx");
-        //    doc1.InsertParagraph("Ya ebal sobaku1");
-        //    doc1.InsertParagraph("Ya ebal sobaku2");
-        //    doc1.InsertParagraph("Ya ebal sobaku3");
-        //    doc1.InsertParagraph("Ya ebal sobaku4");
-        //    doc1.InsertParagraph("Ya ebal sobaku5");
-        //    doc1.InsertParagraph("Ya ebal sobaku6");
-        //    doc1.Save();
-        //    string newXPSDocumentName = String.Concat(System.IO.Path.GetDirectoryName(file.FullName), "\\",
-
-        //                       System.IO.Path.GetFileNameWithoutExtension(file.FullName), ".xps");
-
-        //    documentViewer1.Document =
-
-        //        ConvertWordDocToXPSDoc(file.FullName, newXPSDocumentName).GetFixedDocumentSequence();
-        //    MessageBox.Show("Successfully done");
-        //}
-
 
         Outt outt = new Outt();
-
 
         private int numbOfVars, startTask, endTask;
         string varPathAns;
@@ -123,7 +100,7 @@ namespace W_Gen
 
         }
 
-        int i = 0;
+        string newXPSDocumentName;
         private void Generate_Click(object sender, RoutedEventArgs e)
         {
             varPathAns = @"Answers.docx";
@@ -133,7 +110,10 @@ namespace W_Gen
             endTask = Convert.ToInt32(TextboxTasks2.Text);
 
             fioList = Inp.Load(toFileS).Item1;
-            numbOfVars = fioList.Count-1;
+           // if (fioList.Count>1)
+            numbOfVars = fioList.Count;
+           // else 
+           // numbOfVars = 0;
             if (numbOfVars == 0)
                 numbOfVars = Convert.ToInt32(TextboxVars.Text);
             TextboxVars.Text = String.Format("{0}", numbOfVars);
@@ -144,29 +124,16 @@ namespace W_Gen
 
             file = new FileInfo(varPathAns);
 
-
-            string newXPSDocumentName = String.Concat(System.IO.Path.GetDirectoryName(file.FullName), "\\",
-
-                           System.IO.Path.GetFileNameWithoutExtension(file.FullName) + i.ToString(), ".xps");
-            // i++;
+            newXPSDocumentName = String.Concat(System.IO.Path.GetDirectoryName(file.FullName), "\\",
+                           System.IO.Path.GetFileNameWithoutExtension(file.FullName), ".xps");
 
             documentViewer1.Document =
-
                 ConvertWordDocToXPSDoc(file.FullName, newXPSDocumentName).GetFixedDocumentSequence();
 
-
-
             MessageBox.Show("Успешно");
-
+            
             xpsDoc.Close();
 
-
-        }
-
-
-
-        private void ProgressBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
 
         }
 
@@ -242,11 +209,9 @@ namespace W_Gen
                 }
                 File.Delete(new FileInfo(varPathAns).FullName);
                 File.Delete(new FileInfo(varPathTasks).FullName);
-
-
             }
-
         }
 
+        
     }
 }
