@@ -6,7 +6,6 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Xps.Packaging;
-using Xceed.Words.NET;
 
 namespace W_Gen
 {
@@ -14,13 +13,13 @@ namespace W_Gen
     {
         public MainWindow()
         {
-            
+
             InitializeComponent();
         }
 
         string groupName = "test";
 
-
+        XpsDocument xpsDoc;
         private XpsDocument ConvertWordDocToXPSDoc(string wordDocName, string xpsDocName)
 
         {
@@ -37,7 +36,7 @@ namespace W_Gen
             {
                 doc.SaveAs(xpsDocName, WdSaveFormat.wdFormatXPS);
                 wordApplication.Quit();
-                XpsDocument xpsDoc = new XpsDocument(xpsDocName, System.IO.FileAccess.Read);
+                xpsDoc = new XpsDocument(xpsDocName, System.IO.FileAccess.Read);
                 return xpsDoc;
             }
             catch (Exception exp)
@@ -70,7 +69,7 @@ namespace W_Gen
             toFileS = tasksFile.FileName;
         }
 
-      
+
 
         // номера заданий 
         // от
@@ -123,15 +122,16 @@ namespace W_Gen
         {
 
         }
+
         int i = 0;
         private void Generate_Click(object sender, RoutedEventArgs e)
         {
             varPathAns = @"Answers.docx";
-            
+
 
             startTask = Convert.ToInt32(TextboxTasks.Text);
             endTask = Convert.ToInt32(TextboxTasks2.Text);
-            
+
             fioList = Inp.Load(toFileS).Item1;
             numbOfVars = fioList.Count;
             if (numbOfVars == 0)
@@ -144,21 +144,26 @@ namespace W_Gen
 
             file = new FileInfo(varPathAns);
 
-            
+
             string newXPSDocumentName = String.Concat(System.IO.Path.GetDirectoryName(file.FullName), "\\",
 
                            System.IO.Path.GetFileNameWithoutExtension(file.FullName) + i.ToString(), ".xps");
-            i++;
+            // i++;
 
             documentViewer1.Document =
 
                 ConvertWordDocToXPSDoc(file.FullName, newXPSDocumentName).GetFixedDocumentSequence();
 
-            
-            
+
+
             MessageBox.Show("Успешно");
 
+            xpsDoc.Close();
+
+
         }
+
+
 
         private void ProgressBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -181,34 +186,40 @@ namespace W_Gen
             MessageBox.Show(helpText);
         }
 
-       
+
 
         private void TextBox_I(object sender, TextChangedEventArgs e)
         {
-            
-            
+
+
         }
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             varPathAns = @"Answers.docx";
             varPathTasks = @"Tasks.docx";
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-          
+
             groupName = Inp.Load(toFileS).Item2;
             saveFileDialog.FileName = "Контрольная работа " + groupName + "";
-            
+
             saveFileDialog.Filter = "(*.docx)|*.docx";
-           
+
             //(string, string) solve = ("URAAAAA154", "23154");
 
 
-            if (saveFileDialog.ShowDialog() == true )
+            if (saveFileDialog.ShowDialog() == true)
             {
                 string p = saveFileDialog.FileName;
                 //
-                File.Copy(new FileInfo(varPathTasks).FullName, p);
+                if (new FileInfo(p).Exists == false)
+                    File.Copy(new FileInfo(varPathTasks).FullName, p);
+                else
+                {
+                    File.Delete(p);
+                    File.Copy(new FileInfo(varPathTasks).FullName, p);
+                }
                 // fileNameSaveAnswer += " Ответы ";
-                
+
 
                 //Outt.Save(saveFileDialog.FileName, fileNameSaveAnswer, );
             }
@@ -219,17 +230,23 @@ namespace W_Gen
 
             if (fileNameAnswer.ShowDialog() == true)
             {
-                
+
                 string p2 = fileNameAnswer.FileName;
                 //
-                File.Copy(new FileInfo(varPathAns).FullName, p2);
+                if (new FileInfo(p2).Exists == false)
+                    File.Copy(new FileInfo(varPathAns).FullName, p2);
+                else
+                {
+                    File.Delete(p2);
+                    File.Copy(new FileInfo(varPathTasks).FullName, p2);
+                }
                 File.Delete(new FileInfo(varPathAns).FullName);
                 File.Delete(new FileInfo(varPathTasks).FullName);
 
-                
+
             }
 
         }
-        
+
     }
 }
