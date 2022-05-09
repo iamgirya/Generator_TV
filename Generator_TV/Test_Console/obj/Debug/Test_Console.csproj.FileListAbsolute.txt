@@ -1,9 +1,6 @@
 C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.csproj.AssemblyReference.cache
 C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.csproj.CoreCompileInputs.cache
-C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Debug\Test_Console.exe.config
-C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Debug\Test_Console.exe
 C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Debug\Test_Console.pdb
-C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.exe
 C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.pdb
 D:\1\Generator_TV\Generator_TV\Test_Console\bin\Debug\Test_Console.exe.config
 D:\1\Generator_TV\Generator_TV\Test_Console\bin\Debug\Test_Console.exe
@@ -32,3 +29,13 @@ D:\1\Generator_TV\Generator_TV\Test_Console\bin\Debug\Xceed.Words.NET.dll
 D:\1\Generator_TV\Generator_TV\Test_Console\bin\Debug\InputOutput.pdb
 D:\1\Generator_TV\Generator_TV\Test_Console\bin\Debug\InputOutput.exe.config
 D:\1\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.csproj.CopyComplete
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Debug\Xceed.Document.NET.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Debug\Xceed.Words.NET.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Debug\InputOutput.pdb
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Debug\InputOutput.exe.config
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.csproj.CopyComplete
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Debug\Test_Console.dll.config
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Debug\Test_Console.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Debug\InputOutput.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Debug\InputOutput.dll.config
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\obj\Debug\Test_Console.dll

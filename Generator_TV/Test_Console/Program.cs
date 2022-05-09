@@ -1071,7 +1071,7 @@ namespace W_Gen
                 double multStepen = rand.Next(3, 15);
                 chislitel = 1;
                 multStepen = 3;
-                text += "6. Для какого значения А функция" +
+                text += "6. Для какого значения А функция " +
                     String.Format("f(x) = 0 , x<0; ({0}/A)*e^(-{1}Ax) x>=0, является \n ,", chislitel, multStepen) +
                 "а) плотностью вероятности;" +
                 "б) плотностью вероятности экспоненциального закона?";

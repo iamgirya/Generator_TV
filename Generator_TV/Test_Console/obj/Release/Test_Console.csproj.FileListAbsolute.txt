@@ -1,0 +1,13 @@
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Release\Test_Console.dll.config
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Release\Test_Console.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Release\Test_Console.pdb
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Release\InputOutput.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Release\Xceed.Document.NET.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Release\Xceed.Words.NET.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Release\InputOutput.pdb
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\bin\Release\InputOutput.dll.config
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\obj\Release\Test_Console.csproj.AssemblyReference.cache
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\obj\Release\Test_Console.csproj.CoreCompileInputs.cache
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\obj\Release\Test_Console.csproj.CopyComplete
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\obj\Release\Test_Console.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\Test_Console\obj\Release\Test_Console.pdb

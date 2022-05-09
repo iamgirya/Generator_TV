@@ -1,0 +1,10 @@
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\bin\Release\InputOutput.dll.config
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\bin\Release\InputOutput.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\bin\Release\InputOutput.pdb
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\bin\Release\Xceed.Document.NET.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\bin\Release\Xceed.Words.NET.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\obj\Release\InputOutput.csproj.AssemblyReference.cache
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\obj\Release\InputOutput.csproj.CoreCompileInputs.cache
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\obj\Release\InputOutput.csproj.CopyComplete
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\obj\Release\InputOutput.dll
+C:\Users\danek\Desktop\Лямбда\Лабы\Generator_TV\Generator_TV\InputOutput\InputOutput\obj\Release\InputOutput.pdb
