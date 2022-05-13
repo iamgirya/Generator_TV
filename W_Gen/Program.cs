@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Xceed.Words.NET;
 
 namespace W_Gen
 {
     class Generator_TV
     {
+        private int randomSeed = 0;
         //наши варианты 1 и 6 из файла.
         public (string, string) Task1(int chooseVar)
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -64,7 +66,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -138,7 +140,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -173,7 +175,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -222,7 +224,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -264,7 +266,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -299,7 +301,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -348,7 +350,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -439,7 +441,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -486,7 +488,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -527,7 +529,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -568,7 +570,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -656,7 +658,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -730,7 +732,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -773,7 +775,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             //int count1 = rand.Next(2, 5) * 100;
             text += "Независимые случайные величины X и Y заданы таблицами распределений. Найти:" +
                 "\n1) M(X), M(Y), D(X), D(Y);" +
@@ -892,7 +894,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             //int count1 = rand.Next(2, 5) * 100;
             text += "Дана функция распределения F(x) непрерывной случайной величины X. Требуется:" +
                 "\n1) найти плотность вероятности f(x);" +
@@ -928,7 +930,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             //int count1 = rand.Next(2, 5) * 100;
             text += "Дана плотность вероятности f(x) непрерывной случайной величины X. Требуется:" +
                 "\n1) найти параметр a;" +
@@ -960,7 +962,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             text += "Дана плотность вероятности f(x) непрерывной случайной величины X, имеющая две ненулевые составляющие формулы. Требуется:" +
                 "\n1)Проверить свойство -∞∫∞(f(x)dx)=1" +
                 "\n2)Построить график f(x)" +
@@ -1047,7 +1049,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -1078,7 +1080,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -1095,15 +1097,13 @@ namespace W_Gen
             {
                 double chislitel = rand.Next(1, 10);
                 double multStepen = rand.Next(3, 15);
-               // chislitel = 1;
-               // multStepen = 3;
                 text += "Для какого значения А функция" +
                     String.Format(" f(x) =\n    | 0 , x<0;\n    | ({0}/A)*exp(-{1}Ax) x>=0,\n    | является \n", chislitel, multStepen) +
                 "а)плотностью вероятности;\n" +
                 "б)плотностью вероятности экспоненциального закона?";
-                double solve = Math.Sqrt(chislitel) / Math.Sqrt(multStepen);
-                rezult += String.Format("а) -inf<x<0 ⋃ 0<x<{0:0.0000} ⋃ {0:0.0000}<x<+inf\n", solve);
-                rezult += String.Format("б) √{0}/√{1} \n", chislitel, multStepen);
+                double solve = Math.Sqrt(chislitel/multStepen);
+                rezult += String.Format("а) +-√{0:0.0000} \n", solve);
+                rezult += String.Format("б) √{0:0.0000} \n", solve);
 
             }
 
@@ -1116,7 +1116,7 @@ namespace W_Gen
         {
             string text = "";
             string rezult = "";
-            Random rand = new Random();
+            Random rand = new Random(this.randomSeed);
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -1197,6 +1197,8 @@ namespace W_Gen
             // для каждого варианта
             for (int k = 0; k < numVar; k++)
             {
+                randomSeed = ((int)Math.Pow(numVar, k))+ DateTime.Now.GetHashCode();
+
                 if (fioList.Count - 1 > k)
                 {
                     docTask.InsertParagraph(fioList[k] + " " + group + " " + String.Format("Вариант {0}", k + 1)).FontSize(14D).Font("Times New Roman");
@@ -1215,7 +1217,8 @@ namespace W_Gen
                 for (int i = startTask; i <= endTask && i < 22 && i > 0; i++)
                 {
                     // если второй аргумент 0 - то задача рандомно выбирается из 1 или 6 варианта. Если 1 - из 1-го, иначе из 6-го.
-                    var task = multiTask(i, 0);
+                    
+                    (string,string) task = multiTask(i, 0);
                     docTask.InsertParagraph(i.ToString() + "." + task.Item1).FontSize(12D).Font("Times New Roman");
                     docTask.InsertParagraph();
                     docAnswers.InsertParagraph(i.ToString() + "."+task.Item1).FontSize(12D).Font("Times New Roman");
