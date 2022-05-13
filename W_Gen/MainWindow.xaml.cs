@@ -195,7 +195,7 @@ namespace W_Gen
             SaveFileDialog saveFileDialog = new SaveFileDialog();
 
             groupName = Inp.Load(toFileS).Item2;
-            saveFileDialog.FileName = "Контрольная работа " + groupName + "";
+            saveFileDialog.FileName = "Контрольная работа" + groupName + "";
 
             saveFileDialog.Filter = "(*.docx)|*.docx";
 
@@ -220,7 +220,7 @@ namespace W_Gen
             }
 
             SaveFileDialog fileNameAnswer = new SaveFileDialog();
-            fileNameAnswer.FileName = "Контрольная работа " + groupName + " Ответы";
+            fileNameAnswer.FileName = "Контрольная работа" + groupName + " Ответы";
             fileNameAnswer.Filter = "(*.docx)|*.docx";
 
             if (fileNameAnswer.ShowDialog() == true)

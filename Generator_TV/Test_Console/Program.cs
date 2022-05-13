@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -164,7 +165,7 @@ namespace W_Gen
             {
                 text = "Электронная схема содержит три транзистора, четыре конденсатора и пять резисторов. Событие Tk — выход из " +
                     "строя k-го транзистора(k = 1, 2, 3), событие Сi — выход из строя i-го конденсатора(i = 1, 2, 3, 4)," +
-                    " Rj — выход из строя j -го резистора(j = 1, 2, 3, 4, 5). Электронная схема считается исправной," +
+                    " Rj — выход из строя j -го резистора (j = 1, 2, 3, 4, 5). Электронная схема считается исправной," +
                     " если одновременно исправны все транзисторы, не менее двух конденсаторов и хотя бы один резистор." +
                     "\nЗаписать в алгебре событий событие А: схема исправна.";
 
@@ -738,9 +739,9 @@ namespace W_Gen
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
             {
-                int count1 = rand.Next(1, 5) * 500;
-                text = string.Format("Прядильщица обслуживает 1000 веретен. Вероятность обрыва нити на одном веретене в течение" +
-                    " одной минуты равна 0,03. Составить ряд распределения числа обрывов нити в течение одной минуты. " +
+                int count1 = rand.Next(2, 5) * 500;
+                text = string.Format("Прядильщица обслуживает {0} веретен. Вероятность обрыва нити на одном веретене в течение" +
+                    " одной минуты равна 0,003. Составить ряд распределения числа обрывов нити в течение одной минуты. " +
                     "Найти M(X) этой случайной величины.", count1);
 
                 double a = count1 * 0.03;
@@ -966,7 +967,7 @@ namespace W_Gen
                 "\n2)Построить график f(x)" +
                 "\n3)Найти функцию распределния F(x)" +
                 "\n4)Найти P(a <= X <= b) для данных a,b" +
-                "\n5)Найти M(X),D(x),σ(X)";
+                "\n5)Найти M(X), D(x), σ(X)";
             if (chooseVar == 0)
                 chooseVar = rand.Next(1, 3);
             if (chooseVar == 1)
@@ -974,8 +975,8 @@ namespace W_Gen
                 rezult += "\n Условие выполняется.";
                 double count1 = rand.Next(0, 13) / -10.0;
                 double count2 = rand.Next(1, 30) / 10.0;
-                text += string.Format("f(x) = 0, x<=0; x/8, 0<x<=2; 1, 2<x<11/4; 0, x>11/4 \na = {0} , b = {1}", count1, count2);
-                rezult += "\n F(x)= 0, x<=0; x^2/16, 0<x<=2; x-7/4, 2<x<11/4; 1, x>11/4 \n";
+                text += string.Format("f(x) =\n...0, x<=0;\n...x/8, 0<x<=2;\n...1, 2<x<11/4;\n...0, x>11/4 \na = {0} , b = {1}", count1, count2);
+                rezult += "\n F(x)=\n...0, x<=0;\n...x^2/16, 0<x<=2;\n...x-7/4, 2<x<11/4;\n...1, x>11/4 \n";
 
                 double mx = 0.0;
                 double dx = 0.0;
@@ -1003,15 +1004,15 @@ namespace W_Gen
                 }
 
                 double sx = Math.Sqrt(dx);
-                rezult += String.Format("M(X)={0:0.0000}; D(X)={1:0.0000}; σ(X)={2:0.0000}", mx, dx, sx);
+                rezult += String.Format("M(X)={0:0.0000};\nD(X)={1:0.0000};\nσ(X)={2:0.0000}", mx, dx, sx);
             }
             else
             {
                 rezult += "\n Условие выполняется.";
                 float count1 = rand.Next(11, 20) / -10f;
                 float count2 = rand.Next(-10, 30) / 10f;
-                text += string.Format("f(x) = 0, x<=-1; 1/2, -1<x<=0; 1/2-x/4, 0<x<=2; 0, x>2 \na = {0} , b = {1}", count1, count2);
-                rezult += "\n F(x)= 0, x<=-1; x/2+1/2, -1<x<=0; -x^2/8+x/2+1/2, 0<x<=2; 1, x>2 \n";
+                text += string.Format("f(x) =\n...0, x<=-1;\n...1/2, -1<x<=0;\n...1/2-x/4, 0<x<=2;\n...0, x>2\na = {0} , b = {1}", count1, count2);
+                rezult += "\n F(x)=\n...0, x<=-1;\n...x/2+1/2, -1<x<=0;\n...-x^2/8+x/2+1/2, 0<x<=2;\n...1, x>2\n";
                 float mx = 0f;
                 float dx = 0f;
                 //P(a<x<b) в разных случаях
@@ -1147,6 +1148,7 @@ namespace W_Gen
                 for (int i = startTask; i <= endTask && i < 22 && i > 0; i++)
                 {
                     // если второй аргумент 0 - то задача рандомно выбирается из 1 или 6 варианта. Если 1 - из 1-го, иначе из 6-го.
+                    
                     docTask.InsertParagraph(i.ToString() + "." + multiTask(i, 0).Item1);
                     docTask.InsertParagraph();
                     docAnswers.InsertParagraph(i.ToString() + "." + multiTask(i, 0).Item1);
@@ -1176,3 +1178,4 @@ namespace W_Gen
         }
     }
 }
+*/
