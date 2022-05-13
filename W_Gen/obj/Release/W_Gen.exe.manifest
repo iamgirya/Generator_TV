@@ -54,26 +54,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Test_Console.dll" size="41472">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Test_Console.dll" size="6656">
       <assemblyIdentity name="Test_Console" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>K7fFTbkLWLahoKl7DLbTsy8j1eW7VKgBQmB2X78k7Ag=</dsig:DigestValue>
+        <dsig:DigestValue>c9syURWuExn+m3QORBfOzbREk6Ju8sZmrtpARXGSBbA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="W_Gen.exe" size="61920">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="W_Gen.exe" size="62944">
       <assemblyIdentity name="W_Gen" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>wmw0uWu9EMwLdaID8WCNpTkPwCbNyD2TrXGsxvZ1oo4=</dsig:DigestValue>
+        <dsig:DigestValue>cdo+iwSj29lFLMunsQkYQwUnzChaCLgj2t32LHeLhXY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

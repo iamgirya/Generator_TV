@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="W_Gen.exe" size="66528">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="W_Gen.exe" size="67040">
       <assemblyIdentity name="W_Gen" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>PDmtKgnbVHlWPAuKzDNyBQy0Ey24c2K2wWc8GqM4+8Q=</dsig:DigestValue>
+        <dsig:DigestValue>SQ4kL2GLJCuUx7PJQIXsfQLBIHl0fm1faFnm3ejWL7w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
